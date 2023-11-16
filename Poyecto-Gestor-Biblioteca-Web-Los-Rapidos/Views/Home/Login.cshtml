@@ -1,6 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Login";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
+@model Views_Home_Login
 
-<p>Login</p>
+<div id="content">
+
+	<div class="container mt-5">
+
+		<div class="row">
+			<div class="col-5 mx-auto">
+				<div class="form-container">
+
+					<p class="title">Bienvenido</p>
+
+					<form class="form">
+						<input type="email" class="input" placeholder="Email">
+						<input type="password" class="input" placeholder="Contraseña">
+
+						<button class="col-12 form-btn">Acceder</button>
+					</form>
+
+					<button class="col-12 form-btn"
+							onclick="cargarContenido('RegistrarUsuario.jsp')">
+						Registrarse
+					</button>
+
+					<div class="buttons-container">
+						<div class="apple-login-button" onclick="cargarContenido('olvidadoContraseñ.jsp')">
+							Recuperar contraseña
+						</div>
+
+					</div>
+				</div>
+			</div>

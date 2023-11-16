@@ -10,13 +10,13 @@ builder.Services.AddDbContext<GestorBibliotecaDbContext>(
      o => o.UseNpgsql(builder.Configuration.GetConnectionString("CadenaConexionPostgreSQL")));
 
 var app = builder.Build();
-
+/*
 using (var scope = app.Services.CreateScope())
 {
     var appDBContext = scope.ServiceProvider.GetRequiredService<GestorBibliotecaDbContext>();
     appDBContext.Database.Migrate();
 }
-
+*/
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
