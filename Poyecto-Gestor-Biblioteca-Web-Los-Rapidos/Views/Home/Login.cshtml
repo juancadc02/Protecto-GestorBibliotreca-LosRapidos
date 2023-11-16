@@ -18,10 +18,16 @@
 						<button class="col-12 form-btn">Acceder</button>
 					</form>
 
-					<button class="col-12 form-btn"
-							onclick="cargarContenido('RegistrarUsuario.jsp')">
+					<button class="col-12 form-btn" id="redireccionarBtn">		
 						Registrarse
 					</button>
+					<script>
+						// Función JavaScript para manejar la redirección
+						document.getElementById('redireccionarBtn').addEventListener('click', function () {
+							// Redireccionar a la página 2
+							window.location.href = 'Registro';
+						});
+					</script>
 
 					<div class="buttons-container">
 						<div class="apple-login-button" onclick="cargarContenido('olvidadoContraseñ.jsp')">
