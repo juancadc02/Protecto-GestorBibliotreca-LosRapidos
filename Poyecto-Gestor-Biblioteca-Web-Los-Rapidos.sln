@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poyecto-Gestor-Biblioteca-Web-Los-Rapidos", "Poyecto-Gestor-Biblioteca-Web-Los-Rapidos\Poyecto-Gestor-Biblioteca-Web-Los-Rapidos.csproj", "{CDA94D47-A253-4EBB-BF97-A0AF4E294691}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{D20AA5FD-7C72-4FFE-A3C0-005D2590BCA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDA94D47-A253-4EBB-BF97-A0AF4E294691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA94D47-A253-4EBB-BF97-A0AF4E294691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA94D47-A253-4EBB-BF97-A0AF4E294691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA94D47-A253-4EBB-BF97-A0AF4E294691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20AA5FD-7C72-4FFE-A3C0-005D2590BCA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20AA5FD-7C72-4FFE-A3C0-005D2590BCA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20AA5FD-7C72-4FFE-A3C0-005D2590BCA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20AA5FD-7C72-4FFE-A3C0-005D2590BCA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DBB18B7-9BF6-41C5-94E9-F2CDC307E115}
+	EndGlobalSection
+EndGlobal
