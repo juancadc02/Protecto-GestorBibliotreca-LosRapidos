@@ -1,39 +1,27 @@
-﻿
-@model Views_Home_Login
+﻿@model DAL.Modelos.Usuarios
 
 <div id="content">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-5 mx-auto">
+                <div class="form-container">
+                    <p class="title">Bienvenido</p>
 
-	<div class="container mt-5">
+                    <form class="form">
+                        <input type="email" class="input" placeholder="Email">
+                        <input type="password" class="input" placeholder="Contraseña">
 
-		<div class="row">
-			<div class="col-5 mx-auto">
-				<div class="form-container">
+                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Login", "Login")">Acceder</button>
+                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Registro", "Login")">Registro</button>
+                    </form>
 
-					<p class="title">Bienvenido</p>
-
-					<form class="form">
-						<input type="email" class="input" placeholder="Email">
-						<input type="password" class="input" placeholder="Contraseña">
-
-						<button class="col-12 form-btn">Acceder</button>
-					</form>
-
-					<button class="col-12 form-btn" id="redireccionarBtn">		
-						Registrarse
-					</button>
-					<script>
-						// Función JavaScript para manejar la redirección
-						document.getElementById('redireccionarBtn').addEventListener('click', function () {
-							// Redireccionar a la página 2
-							window.location.href = 'Registro';
-						});
-					</script>
-
-					<div class="buttons-container">
-						<div class="apple-login-button" onclick="cargarContenido('olvidadoContraseñ.jsp')">
-							Recuperar contraseña
-						</div>
-
-					</div>
-				</div>
-			</div>
+                    <div class="buttons-container">
+                        <div class="apple-login-button" onclick="cargarContenido('olvidadoContraseñ.jsp')">
+                            Recuperar contraseña
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
