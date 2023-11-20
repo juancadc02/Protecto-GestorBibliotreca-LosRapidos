@@ -46,16 +46,7 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("estaBloqueado_usuario")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTime>("fch_alta_usuario")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("fch_baja_usuario")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("fch_fin_bloqueo_usuario")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("nombre_usuario")

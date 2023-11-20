@@ -5,6 +5,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
 {
     public class ServicioConsultasImpl : ServicioConsultas
     {
+        servicioEncriptarContraseña servicioEncriptar = new servicioEncriptarContraseñaImpl();
         
 
         #region Metodos Login
@@ -19,11 +20,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                     apellidos_usuario = nuevoUsuario.apellidos_usuario,
                     tlf_usuario = nuevoUsuario.tlf_usuario,
                     email_usuario = nuevoUsuario.email_usuario,
-                    clave_usuario = nuevoUsuario.clave_usuario,
-                    estaBloqueado_usuario = nuevoUsuario.estaBloqueado_usuario,
-                    fch_fin_bloqueo_usuario = nuevoUsuario.fch_fin_bloqueo_usuario,
+                    clave_usuario =servicioEncriptar.EncriptarContraseña( nuevoUsuario.clave_usuario),
                     fch_alta_usuario = nuevoUsuario.fch_alta_usuario,
-                    fch_baja_usuario = nuevoUsuario.fch_baja_usuario
+                    
                 };
                 contexto.Add(nuevoUsuario);
                 contexto.SaveChanges();
@@ -31,32 +30,30 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
             }
         }
 
-        public bool loginUsuario(string username, string contraseña, string urlApi)
+        public bool loginUsuario(string nombre_usuario, string clave_usuario, string urlApi)
         {
+             
             using (HttpClient client = new HttpClient())
             {
+                
                 string apiUrl = urlApi;
-                // Construir el endpoint para la solicitud, incluyendo el nombre de usuario y la contraseña proporcionados
-                string endpoint = $"/auth?username={username}&password={contraseña}";
+                
+                string endpoint = $"/auth?username={nombre_usuario}&password={servicioEncriptar.EncriptarContraseña(clave_usuario)}";
 
-                // Realizar una solicitud GET a la API concatenando la URL de la API y el endpoint
                 HttpResponseMessage response = client.GetAsync(apiUrl + endpoint).Result;
 
-                // Verificar si la solicitud fue exitosa (código de estado HTTP 200)
                 if (response.IsSuccessStatusCode)
                 {
-                    // Leer el cuerpo de la respuesta como una cadena
                     string responseBody = response.Content.ReadAsStringAsync().Result;
-                    // Interpretar la respuesta (en este caso, la API devuelve "true" si las credenciales son correctas)
-                    return responseBody.ToLower() == "true"; // Ejemplo: la API devuelve "true" si las credenciales son correctas
+                    return responseBody.ToLower() == "true";
                 }
                 else
                 {
-                    // Si la solicitud no fue exitosa, devolver false (autenticación fallida)
                     return false;
                 }
             }
         }
+
         #endregion
     }
 }

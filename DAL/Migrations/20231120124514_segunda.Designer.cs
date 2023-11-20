@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(GestorBibliotecaDbContext))]
-    [Migration("20231116113445_primera")]
-    partial class primera
+    [Migration("20231120124514_segunda")]
+    partial class segunda
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,16 +49,7 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("estaBloqueado_usuario")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTime>("fch_alta_usuario")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("fch_baja_usuario")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("fch_fin_bloqueo_usuario")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("nombre_usuario")

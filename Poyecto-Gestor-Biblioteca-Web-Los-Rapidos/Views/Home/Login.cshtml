@@ -1,5 +1,9 @@
 ﻿@model DAL.Modelos.Usuarios
 
+@{
+    var mensajeRegistroExitoso = ViewBag.MensajeRegistroExitoso as string;
+}
+
 <div id="content">
     <div class="container mt-5">
         <div class="row">
@@ -7,9 +11,9 @@
                 <div class="form-container">
                     <p class="title">Bienvenido</p>
 
-                    <form class="form">
-                        <input type="email" class="input" placeholder="Email">
-                        <input type="password" class="input" placeholder="Contraseña">
+                    <form class="form" method="post" action="@Url.Action("Login", "LoginController")">
+                        <input type="text" name="nombre_usuario" class="input" placeholder="Email">
+                        <input type="password" name="clave_usuario" class="input" placeholder="Contraseña">
 
                         <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Login", "Login")">Acceder</button>
                         <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Registro", "Login")">Registro</button>
@@ -21,6 +25,25 @@
                         </div>
                     </div>
                 </div>
+                @if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
+                {
+                    <div class="alert alert-success">
+                        @mensajeRegistroExitoso
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(ViewBag.MensajeLoginExitoso))
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.MensajeLoginExitoso
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(ViewBag.MensajeLoginError))
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.MensajeLoginError
+                    </div>
+                }
             </div>
         </div>
     </div>

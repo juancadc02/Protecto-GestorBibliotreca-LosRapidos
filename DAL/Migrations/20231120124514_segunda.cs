@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class primera : Migration
+    public partial class segunda : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,10 +24,7 @@ namespace DAL.Migrations
                     tlf_usuario = table.Column<string>(type: "text", nullable: false),
                     email_usuario = table.Column<string>(type: "text", nullable: false),
                     clave_usuario = table.Column<string>(type: "text", nullable: false),
-                    estaBloqueado_usuario = table.Column<bool>(type: "boolean", nullable: false),
-                    fch_fin_bloqueo_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    fch_alta_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    fch_baja_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    fch_alta_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
