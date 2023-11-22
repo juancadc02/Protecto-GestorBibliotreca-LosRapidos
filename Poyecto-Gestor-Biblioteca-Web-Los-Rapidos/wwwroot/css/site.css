@@ -203,3 +203,23 @@ p {
 h1 {
     font-size: 24px; /* Tamaño del texto para los encabezados h1 */
 }
+
+
+
+
+/*Estilo para la barra de navegacion*/
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 10px;
+}
+
+.login-box {
+    background-color: yellow;
+    padding: 10px;
+    border-radius: 5px;
+}

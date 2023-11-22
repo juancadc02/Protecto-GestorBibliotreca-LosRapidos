@@ -11,19 +11,17 @@
                 <div class="form-container">
                     <p class="title">Bienvenido</p>
 
-                    <form class="form" method="post" action="@Url.Action("Login", "LoginController")">
+                    <form class="form" method="post" action="@Url.Action("IniciarSesion", "ControladorIniciarSesion")">
                         <input type="text" name="nombre_usuario" class="input" placeholder="Email">
                         <input type="password" name="clave_usuario" class="input" placeholder="Contraseña">
 
-                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Login", "Login")">Acceder</button>
-                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Registro", "Login")">Registro</button>
+                        <button type="submit" class="col-12 form-btn">Acceder</button>
+                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Registro", "ControladorRegistro")">Registro</button>
+                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("irARecuperarContraseña", "ControladorRecuperarContraseña")">Recuperar Contraseña</button>
+
                     </form>
 
-                    <div class="buttons-container">
-                        <div class="apple-login-button" onclick="cargarContenido('olvidadoContraseñ.jsp')">
-                            Recuperar contraseña
-                        </div>
-                    </div>
+                    
                 </div>
                 @if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
                 {

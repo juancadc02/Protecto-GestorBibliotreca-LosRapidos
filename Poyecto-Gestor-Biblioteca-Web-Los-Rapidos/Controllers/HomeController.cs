@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Models;
+using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 using System.Diagnostics;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
@@ -7,10 +8,13 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private readonly ServicioConsultasImpl servicio;
         public HomeController(ILogger<HomeController> logger)
         {
+            servicio = new ServicioConsultasImpl();
+            servicio.listadoUsuariosApi("https://localhost:7268/api/ControladorUsuarios");
             _logger = logger;
+
         }
 
         public IActionResult Index()
