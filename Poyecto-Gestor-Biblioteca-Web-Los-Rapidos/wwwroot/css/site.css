@@ -207,19 +207,37 @@ h1 {
 
 
 
-/*Estilo para la barra de navegacion*/
-
-.navbar-nav {
+/*Estilos para la vista de recuperar contraseña*/
+.mi-recuadro {
+    width: 300px; /* Ancho del recuadro */
+    height: 75px; /* Altura del recuadro */
+    border: 1px solid #ff9900; /* Borde sólido de 2 píxeles, color #333 */
+    padding: 20px; /* Espaciado interno de 20 píxeles */
+    margin: 3px auto; /* Margen superior e inferior de 50 píxeles, centrado horizontalmente */
+    text-align: center; /* Alineación del texto al centro */
+    background-color: white; /* Color de fondo */
+    border-radius: 10px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    line-height: 25px; /* Ajusta esto a la altura del recuadro */
+}
+.form-olvidado {
+    width: 350px;
+    height: 365px;
+}
+.mi-recuadro p {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #192255;
+}
+.titulo {
+    text-align: left;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    margin: 10px 0 30px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: #192255;
 }
 
-.nav-item {
-    margin-left: 10px;
-}
-
-.login-box {
-    background-color: yellow;
-    padding: 10px;
-    border-radius: 5px;
-}
