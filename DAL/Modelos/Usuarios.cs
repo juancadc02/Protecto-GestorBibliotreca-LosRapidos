@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Modelos
 {
+    /// <summary>
+    /// Clase DAO que representa la tabla de usuarios
+    /// </summary>
     public class Usuarios
     {
-      
+
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -44,7 +47,7 @@ namespace DAL.Modelos
             this.fch_alta_usuario = fch_alta_usuario;
         }
 
-        
+
 
         #endregion
     }
