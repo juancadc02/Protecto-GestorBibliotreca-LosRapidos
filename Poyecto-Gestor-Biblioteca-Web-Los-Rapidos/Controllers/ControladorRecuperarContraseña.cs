@@ -7,10 +7,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// <summary>
         /// Metodo encargado de abrir la vista de recuperar contraseña
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ActionResult que redirige a la página de recuperar contraseña del usuario</returns>
         public IActionResult irARecuperarContraseña()
         {
-            // Lógica de la acción (si es necesario)
             return View("~/Views/Registro/RecuperarContraseña.cshtml");
         }
     }

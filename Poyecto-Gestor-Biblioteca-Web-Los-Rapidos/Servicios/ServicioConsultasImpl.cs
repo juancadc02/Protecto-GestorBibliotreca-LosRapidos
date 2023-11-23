@@ -9,14 +9,17 @@ using System.Text;
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
 {
     /// <summary>
-    /// Clase que implementa la interfaz ServicioConsultas y detalla la lógica de los métodos
+    /// Clase que implementa la interfaz ServicioConsultas y detalla la lógica de los métodos.
     /// </summary>
     public class ServicioConsultasImpl : ServicioConsultas
     {
-        servicioEncriptarContraseña servicioEncriptar = new servicioEncriptarContraseñaImpl();
+        private readonly servicioEncriptarContraseña servicioEncriptar = new servicioEncriptarContraseñaImpl();
 
+        /// <summary>
+        /// Registra un nuevo usuario en la base de datos.
+        /// </summary>
+        /// <param name="nuevoUsuario">Objeto Usuarios que representa al nuevo usuario a registrar.</param>
         public void registrarUsuario(Usuarios nuevoUsuario)
-
         {
             using (var contexto = new GestorBibliotecaDbContext())
             {
@@ -29,13 +32,19 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                     email_usuario = nuevoUsuario.email_usuario,
                     clave_usuario = servicioEncriptar.EncriptarContraseña(nuevoUsuario.clave_usuario),
                     fch_alta_usuario = nuevoUsuario.fch_alta_usuario,
-
                 };
+
                 contexto.Add(nuevoUsuario);
                 contexto.SaveChanges();
                 Console.WriteLine("\n\n\t Usuario insertado correctamente");
             }
         }
+
+        /// <summary>
+        /// Envía un correo electrónico desde una dirección de origen a una dirección de destino.
+        /// </summary>
+        /// <param name="emailOrigen">Dirección de correo electrónico de origen.</param>
+        /// <param name="emailDestino">Dirección de correo electrónico de destino.</param>
         public void enviarCorreoElectronico(string emailOrigen, string emailDestino)
         {
             MailMessage mail = new MailMessage();
@@ -48,11 +57,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
             mail.Body = htmlBody;
             mail.IsBodyHtml = true;
 
-
-
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential(emailOrigen, "Contreña");
+            smtp.Credentials = new NetworkCredential(emailOrigen, "Contraseña"); // Reemplaza "Contraseña" con tu contraseña real
             smtp.EnableSsl = true;
 
             try
@@ -66,6 +73,11 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
             }
         }
 
+        /// <summary>
+        /// Obtiene el contenido HTML desde una vista.
+        /// </summary>
+        /// <param name="nombreVista">Nombre de la vista desde la cual se obtendrá el contenido HTML.</param>
+        /// <returns>Contenido HTML de la vista.</returns>
         private string ObtenerContenidoHTMLDesdeVista(string nombreVista)
         {
             // Aquí debes cargar el contenido HTML desde tu vista.
@@ -84,12 +96,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                 return string.Empty;
             }
         }
-
-
-
-
-
-
     }
 
 

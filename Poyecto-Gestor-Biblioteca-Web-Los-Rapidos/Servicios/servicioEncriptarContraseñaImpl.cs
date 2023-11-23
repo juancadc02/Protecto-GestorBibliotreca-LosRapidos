@@ -3,6 +3,9 @@ using System.Text;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
 {
+    /// <summary>
+    /// Clase que implementa y detalla la lógica para encriptar contraseña
+    /// </summary>
     public class servicioEncriptarContraseñaImpl : servicioEncriptarContraseña
     {
         public string EncriptarContraseña(string contraseña)

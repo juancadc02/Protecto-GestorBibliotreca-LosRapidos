@@ -12,7 +12,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         private readonly GestorBibliotecaDbContext dbContext;
 
         const string urlApi = "https://localhost:7268/api/ControladorUsuarios";
-        
+
 
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             return View("~/Views/Home/Login.cshtml");// Devuelve la vista asociada
         }
 
-       
+
 
         [HttpPost]
         public IActionResult InicioDeSesion(string nombre_usuario, string clave_usuario)
@@ -61,7 +61,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 
             // Utilizar Entity Framework para verificar las credenciales
             var usuario = dbContext.Usuarios
-                .FirstOrDefault(u => u.nombre_usuario == nombre_usuario && u.clave_usuario ==encriptarContraseña.EncriptarContraseña( clave_usuario));
+                .FirstOrDefault(u => u.nombre_usuario == nombre_usuario && u.clave_usuario == encriptarContraseña.EncriptarContraseña(clave_usuario));
 
             // Si el usuario es diferente de null, las credenciales son válidas
             return usuario != null;
