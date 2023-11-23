@@ -45,60 +45,44 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
         /// </summary>
         /// <param name="emailOrigen">Dirección de correo electrónico de origen.</param>
         /// <param name="emailDestino">Dirección de correo electrónico de destino.</param>
-        public void enviarCorreoElectronico(string emailOrigen, string emailDestino)
+        public void enviarCorreoElectronico(string gmailEnvio, string gmailRecibe, string asunto, string htmlContent)
         {
-            MailMessage mail = new MailMessage();
-            SmtpClient smtp = new SmtpClient();
-            mail.From = new MailAddress(emailOrigen);
-            mail.To.Add(new MailAddress(emailDestino));
-
-            // Cuerpo del correo en formato HTML
-            string htmlBody = ObtenerContenidoHTMLDesdeVista("RecuperacionContraseñaCorreo.html");
-            mail.Body = htmlBody;
-            mail.IsBodyHtml = true;
-
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential(emailOrigen, "Contraseña"); // Reemplaza "Contraseña" con tu contraseña real
-            smtp.EnableSsl = true;
-
-            try
+            //string htmlContent = System.IO.File.ReadAllText("/Pantilla/RecuperacionContraseñaCorreo.html");
+            using (var mail = new MailMessage())
             {
-                smtp.Send(mail);
-                Console.WriteLine("Correo enviado");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Se ha producido un error: " + ex);
-            }
-        }
+                mail.From = new MailAddress(gmailEnvio);
+                mail.To.Add(new MailAddress(gmailRecibe));
+                mail.Subject = asunto;
 
-        /// <summary>
-        /// Obtiene el contenido HTML desde una vista.
-        /// </summary>
-        /// <param name="nombreVista">Nombre de la vista desde la cual se obtendrá el contenido HTML.</param>
-        /// <returns>Contenido HTML de la vista.</returns>
-        private string ObtenerContenidoHTMLDesdeVista(string nombreVista)
-        {
-            // Aquí debes cargar el contenido HTML desde tu vista.
-            // Puedes utilizar algún mecanismo de lectura de archivos, dependiendo de tu aplicación.
+                // Cuerpo del correo en formato HTML
+                mail.Body = htmlContent;
+                mail.IsBodyHtml = true;
 
-            // Ejemplo: leyendo el contenido de un archivo en la misma carpeta que el código
-            string rutaVista = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plantilla", nombreVista);
+                using (var smtp = new SmtpClient())
+                {
+                    // Configuración del servidor SMTP (en este caso, para Gmail)
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.Credentials = new NetworkCredential(gmailEnvio, "TuContraseña"); // Reemplaza "TuContraseña" con tu contraseña real
+                    smtp.EnableSsl = true;
 
-            if (File.Exists(rutaVista))
-            {
-                return File.ReadAllText(rutaVista);
-            }
-            else
-            {
-                Console.WriteLine("La vista no se encontró.");
-                return string.Empty;
+                    try
+                    {
+                        smtp.Send(mail);
+                        Console.WriteLine("Correo enviado");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Se ha producido un error: " + ex.Message);
+                    }
+                }
             }
         }
     }
 
-
 }
+
+
+
 
 

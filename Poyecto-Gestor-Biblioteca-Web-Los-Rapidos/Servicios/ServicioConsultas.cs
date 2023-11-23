@@ -12,12 +12,13 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
         /// </summary>
         /// <param name="nuevoUsuario"> Objeto usuario que se va registrar en la bbdd</param>
         public void registrarUsuario(Usuarios nuevoUsuario);
-
         /// <summary>
-        /// Método encargado que inicia sesion.
+        /// Interfaz del metodo que envia correo electronico
         /// </summary>
-        /// <param name="nombre_usuario">Nombre de usuario para iniciar sesión</param>
-        /// <param name="clave_usuario"> Contraseña de usuario para iniciar sesión</param>
-        /// <returns></returns>
+        /// <param name="gmailEnvio"></param>
+        /// <param name="gmailRecibe"></param>
+        /// <param name="subject"></param>
+        /// <param name="htmlContent"></param>
+        public void enviarCorreoElectronico(string gmailEnvio, string gmailRecibe, string subject, string htmlContent);
     }
 }
