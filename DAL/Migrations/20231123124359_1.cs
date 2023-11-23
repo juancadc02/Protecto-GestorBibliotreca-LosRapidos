@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class primera : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,11 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.id_usuario);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "nombre_usuario", "tlf_usuario" },
+                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 11, 23, 12, 43, 58, 924, DateTimeKind.Utc).AddTicks(8618), "ADMIN", "1" });
         }
 
         /// <inheritdoc />

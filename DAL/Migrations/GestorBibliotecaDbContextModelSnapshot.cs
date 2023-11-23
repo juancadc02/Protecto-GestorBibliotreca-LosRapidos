@@ -60,6 +60,19 @@ namespace DAL.Migrations
                     b.HasKey("id_usuario");
 
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            id_usuario = 1,
+                            apellidos_usuario = "ADMIN",
+                            clave_usuario = "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270",
+                            dni_usuario = "1",
+                            email_usuario = "admin@gmail.com",
+                            fch_alta_usuario = new DateTime(2023, 11, 23, 12, 43, 58, 924, DateTimeKind.Utc).AddTicks(8618),
+                            nombre_usuario = "ADMIN",
+                            tlf_usuario = "1"
+                        });
                 });
 #pragma warning restore 612, 618
         }
