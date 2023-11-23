@@ -11,8 +11,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         private readonly ServicioConsultasImpl servicio;
         public HomeController(ILogger<HomeController> logger)
         {
-            servicio = new ServicioConsultasImpl();
-            servicio.listadoUsuariosApi("https://localhost:7268/api/ControladorUsuarios");
+          
             _logger = logger;
 
         }

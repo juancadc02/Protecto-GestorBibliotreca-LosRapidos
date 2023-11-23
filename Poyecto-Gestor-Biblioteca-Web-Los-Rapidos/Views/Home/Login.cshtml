@@ -11,7 +11,7 @@
                 <div class="form-container">
                     <p class="title">Bienvenido</p>
 
-                    <form class="form" method="post" action="@Url.Action("IniciarSesion", "ControladorIniciarSesion")">
+                    <form class="form" method="post" action="@Url.Action("InicioDeSesion", "ControladorIniciarSesion")">
                         <input type="text" name="nombre_usuario" class="input" placeholder="Email">
                         <input type="password" name="clave_usuario" class="input" placeholder="Contraseña">
 
@@ -29,12 +29,7 @@
                         @mensajeRegistroExitoso
                     </div>
                 }
-                @if (!string.IsNullOrEmpty(ViewBag.MensajeLoginExitoso))
-                {
-                    <div class="alert alert-success">
-                        @ViewBag.MensajeLoginExitoso
-                    </div>
-                }
+              
 
                 @if (!string.IsNullOrEmpty(ViewBag.MensajeLoginError))
                 {

@@ -1,40 +1,54 @@
 using DAL;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configurar servicios
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<GestorBibliotecaDbContext>(
-     o => o.UseNpgsql(builder.Configuration.GetConnectionString("CadenaConexionPostgreSQL")));
+builder.Services.AddDbContext<GestorBibliotecaDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("GestorBibliotecaDbContext"));
+});
 
-var app = builder.Build();
-/*
-using (var scope = app.Services.CreateScope())
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    // Puedes agregar políticas de autorización si es necesario
+});
+
+// Realizar migraciones
+/*using (var scope = builder.Services.CreateScope())
 {
     var appDBContext = scope.ServiceProvider.GetRequiredService<GestorBibliotecaDbContext>();
     appDBContext.Database.Migrate();
 }
 */
-// Configure the HTTP request pipeline.
+var app = builder.Build();
+
+// Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
+// Configurar rutas de controlador
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+    pattern: "{controller=ControladorIniciarSesion}/{action=Login}/{id?}");
 
 app.Run();

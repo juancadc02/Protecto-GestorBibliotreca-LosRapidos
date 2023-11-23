@@ -9,6 +9,12 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
         /// </summary>
         /// <param name="nuevoUsuario"></param>
         public void registrarUsuario(Usuarios nuevoUsuario);
-     
+
+        /// <summary>
+        /// Interfaz del metodo que inicia sesion.
+        /// </summary>
+        /// <param name="nombre_usuario"></param>
+        /// <param name="clave_usuario"></param>
+        /// <returns></returns>
     }
 }

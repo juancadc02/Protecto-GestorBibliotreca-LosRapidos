@@ -1,14 +1,18 @@
-﻿using DAL.Modelos;
+﻿using DAL;
+using DAL.Modelos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 {
     public class ControladorIniciarSesion : Controller
     {
-        const string urlApi = "https://localhost:7268/api/ControladorUsuarios";
+        private readonly GestorBibliotecaDbContext dbContext;
 
+        const string urlApi = "https://localhost:7268/api/ControladorUsuarios";
+        
 
 
         /// <summary>
@@ -24,70 +28,61 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             return View("~/Views/Home/Login.cshtml");// Devuelve la vista asociada
         }
 
-        
-
-      
-
        
 
-
-
-
-        // POST: LoginController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult InicioDeSesion(string nombre_usuario, string clave_usuario)
         {
-            try
+            ServicioConsultas consultas = new ServicioConsultasImpl();
+            // Validar los datos de entrada
+            if (string.IsNullOrEmpty(nombre_usuario) || string.IsNullOrEmpty(clave_usuario))
             {
-                return RedirectToAction(nameof(Index));
+                // Datos de entrada no válidos, podrías redirigir a una página de error
+                return RedirectToAction("Error", "Home");
             }
-            catch
+
+            // Realizar la autenticación en la base de datos
+            if (IniciarSesion(nombre_usuario, clave_usuario))
             {
-                return View();
+                // Inicio de sesión exitoso, redirigir a la página principal
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                // Autenticación fallida, podrías redirigir a una página de inicio de sesión con un mensaje de error
+
+                ViewBag.MensajeLoginError = "Usuario o Contraseñ incorrecto !!";
+                return View("~/Views/Home/Login.cshtml");// Devuelve la vista asociada
             }
         }
+        private bool IniciarSesion(string nombre_usuario, string clave_usuario)
+        {
+            servicioEncriptarContraseña encriptarContraseña = new servicioEncriptarContraseñaImpl();
 
-        // GET: LoginController/Edit/5
-        public ActionResult Edit(int id)
+            // Utilizar Entity Framework para verificar las credenciales
+            var usuario = dbContext.Usuarios
+                .FirstOrDefault(u => u.nombre_usuario == nombre_usuario && u.clave_usuario ==encriptarContraseña.EncriptarContraseña( clave_usuario));
+
+            // Si el usuario es diferente de null, las credenciales son válidas
+            return usuario != null;
+        }
+
+
+
+        public IActionResult AccessDenied()
         {
             return View();
         }
 
-        // POST: LoginController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Logout()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            // Lógica para cerrar sesión aquí
 
-        // GET: LoginController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+            return RedirectToAction("Login");
         }
-
-        // POST: LoginController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ControladorIniciarSesion(GestorBibliotecaDbContext dbContext)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            this.dbContext = dbContext;
         }
     }
 }
