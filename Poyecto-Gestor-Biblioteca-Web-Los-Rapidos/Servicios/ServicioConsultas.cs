@@ -2,19 +2,22 @@
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
 {
+    /// <summary>
+    /// Interfaz que declara los métodos que se van a utilizar para realizar consultas
+    /// </summary>
     public interface ServicioConsultas
     {
         /// <summary>
-        /// Interfaz del metodo encargador de registrar usuarios
+        /// Método encargado de registrar nuevos usuarios
         /// </summary>
-        /// <param name="nuevoUsuario"></param>
+        /// <param name="nuevoUsuario"> Objeto usuario que se va registrar en la bbdd</param>
         public void registrarUsuario(Usuarios nuevoUsuario);
 
         /// <summary>
-        /// Interfaz del metodo que inicia sesion.
+        /// Método encargado que inicia sesion.
         /// </summary>
-        /// <param name="nombre_usuario"></param>
-        /// <param name="clave_usuario"></param>
+        /// <param name="nombre_usuario">Nombre de usuario para iniciar sesión</param>
+        /// <param name="clave_usuario"> Contraseña de usuario para iniciar sesión</param>
         /// <returns></returns>
     }
 }

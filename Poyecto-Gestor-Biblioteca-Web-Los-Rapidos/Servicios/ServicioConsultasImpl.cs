@@ -8,16 +8,15 @@ using System.Text;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
 {
+    /// <summary>
+    /// Clase que implementa la interfaz ServicioConsultas y detalla la lógica de los métodos
+    /// </summary>
     public class ServicioConsultasImpl : ServicioConsultas
     {
         servicioEncriptarContraseña servicioEncriptar = new servicioEncriptarContraseñaImpl();
 
-        
-       
-
-           
         public void registrarUsuario(Usuarios nuevoUsuario)
-       
+
         {
             using (var contexto = new GestorBibliotecaDbContext())
             {
@@ -28,7 +27,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                     apellidos_usuario = nuevoUsuario.apellidos_usuario,
                     tlf_usuario = nuevoUsuario.tlf_usuario,
                     email_usuario = nuevoUsuario.email_usuario,
-                    clave_usuario =servicioEncriptar.EncriptarContraseña( nuevoUsuario.clave_usuario),
+                    clave_usuario = servicioEncriptar.EncriptarContraseña(nuevoUsuario.clave_usuario),
                     fch_alta_usuario = nuevoUsuario.fch_alta_usuario,
 
                 };
@@ -94,6 +93,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
     }
 
 
-    }
+}
 
 

@@ -5,12 +5,15 @@ using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 {
+    /// <summary>
+    /// Controlador encargado de registrar nuevos usuarios
+    /// </summary>
     public class ControladorRegistro : Controller
     {
         /// <summary>
         /// Metodo encargado de abrir la vista de registrar usuarios
         /// </summary>
-        /// <returns></returns>
+        /// <returns> La vista de registro para nuevo usuario</returns>
         public IActionResult Registro()
         {
             // Lógica de la acción (si es necesario)
@@ -27,7 +30,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// <param name="email_usuario"></param>
         /// <param name="clave_usuario"></param>
         /// <returns></returns>
-
         [HttpPost]
         public ActionResult RegistrarUsuarios(string nombre_usuario, string apellidos_usuario, string dni_usuario, string tlf_usuario, string email_usuario, string clave_usuario)
         {

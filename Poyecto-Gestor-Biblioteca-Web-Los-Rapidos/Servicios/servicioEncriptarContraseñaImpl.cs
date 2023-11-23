@@ -16,9 +16,11 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                 //utilizando la codificación UTF-8, esta codificacion asegura que los caracteres especiales
                 //y no ASCII se manejen correctamente.
                 byte[] bytes = Encoding.UTF8.GetBytes(contraseña);
-                //oma los bytes de entrada y aplica el algoritmo SHA-256 para producir
+
+                //Toma los bytes de entrada y aplica el algoritmo SHA-256 para producir
                 //un conjunto de bytes que representa el hash de la contraseña.
                 byte[] hashBytes = sha256.ComputeHash(bytes);
+
                 //Paso 1: BitConverter.ToString(hashBytes) convierte los bytes del hash en una cadena que contiene
                 //los caracteres hexadecimales separados por guiones.
                 //Paso 2: Replace("-", "") elimina los guiones de la cadena generada, ya que a menudo

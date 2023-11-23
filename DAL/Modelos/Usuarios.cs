@@ -14,7 +14,6 @@ namespace DAL.Modelos
     public class Usuarios
     {
 
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id_usuario { get; set; }
