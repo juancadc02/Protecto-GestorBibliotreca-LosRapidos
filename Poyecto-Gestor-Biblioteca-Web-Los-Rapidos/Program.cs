@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<GestorBibliotecaDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("GestorBibliotecaDbContext"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("CadenaConexionPostgreSQL"));
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -29,8 +29,8 @@ builder.Services.AddAuthorization(options =>
 {
     var appDBContext = scope.ServiceProvider.GetRequiredService<GestorBibliotecaDbContext>();
     appDBContext.Database.Migrate();
-}
-*/
+}*/
+
 var app = builder.Build();
 
 // Middleware

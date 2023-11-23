@@ -31,18 +31,18 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 
 
         [HttpPost]
-        public IActionResult InicioDeSesion(string nombre_usuario, string clave_usuario)
+        public IActionResult InicioDeSesion(string email_usuario, string clave_usuario)
         {
             ServicioConsultas consultas = new ServicioConsultasImpl();
             // Validar los datos de entrada
-            if (string.IsNullOrEmpty(nombre_usuario) || string.IsNullOrEmpty(clave_usuario))
+            if (string.IsNullOrEmpty(email_usuario) || string.IsNullOrEmpty(clave_usuario))
             {
                 // Datos de entrada no válidos, podrías redirigir a una página de error
                 return RedirectToAction("Error", "Home");
             }
 
             // Realizar la autenticación en la base de datos
-            if (IniciarSesion(nombre_usuario, clave_usuario))
+            if (IniciarSesion(email_usuario, clave_usuario))
             {
                 // Inicio de sesión exitoso, redirigir a la página principal
                 return RedirectToAction("Index", "Home");
@@ -55,13 +55,13 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                 return View("~/Views/Home/Login.cshtml");// Devuelve la vista asociada
             }
         }
-        private bool IniciarSesion(string nombre_usuario, string clave_usuario)
+        private bool IniciarSesion(string email_usuario, string clave_usuario)
         {
             servicioEncriptarContraseña encriptarContraseña = new servicioEncriptarContraseñaImpl();
 
             // Utilizar Entity Framework para verificar las credenciales
             var usuario = dbContext.Usuarios
-                .FirstOrDefault(u => u.nombre_usuario == nombre_usuario && u.clave_usuario == encriptarContraseña.EncriptarContraseña(clave_usuario));
+                .FirstOrDefault(u => u.email_usuario == email_usuario && u.clave_usuario == encriptarContraseña.EncriptarContraseña(clave_usuario));
 
             // Si el usuario es diferente de null, las credenciales son válidas
             return usuario != null;
