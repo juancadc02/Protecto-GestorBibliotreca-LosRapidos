@@ -1,0 +1,46 @@
+﻿nav {
+    margin: 10px;
+    background-color: white; /* Fondo blanco para el menú */
+    box-shadow: rgba(40, 88, 69, 0.35) 0px 5px 15px; /*Sombra para destacar el menú */
+    border-radius: 10px;
+    /*box-shadow: 0px 3px 8px rgba(40, 88, 69, 0.24); /* Establece un color sólido como respaldo para navegadores que no admiten gradiente */
+    /*background: linear-gradient(to bottom, #285845, transparent); /* Agrega un degradado al fondo del menú */
+}
+
+.menu {
+    display: flex; /* Establece el contenedor del menú como un contenedor flexible */
+    justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+    align-items: center; /* Centra los elementos verticalmente en el contenedor */
+    padding: 10px; /* Añade un espacio interno al contenedor del menú */
+}
+
+.logo a {
+    color: #192255; /* Color del texto del logo */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    font-size: 2em; /* Tamaño del texto del logo */
+    border-radius: 10px; /* Agrega bordes redondeados al logo */
+    padding: 5px 10px; /* Añade un espacio interno alrededor del logo */
+    text-align: center; /* Centra el texto dentro del contenedor del logo */
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif; /* Familia de fuentes */
+    font-weight: 800;
+}
+
+.nav-links {
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Establece la lista como un contenedor flexible */
+}
+
+    .nav-links li {
+        margin-right: 15px; /* Añade un espacio entre los elementos de la lista */
+    }
+
+    .nav-links a {
+        color: #192255; /* Color del texto de los enlaces */
+        text-decoration: none; /* Elimina el subrayado de los enlaces */
+        font-size: 1.2em; /* Tamaño del texto de los enlaces */
+        border-radius: 5px; /* Agrega bordes redondeados a los enlaces */
+        padding: 5px 10px; /* Añade un espacio interno alrededor de los enlaces */
+        text-align: center; /* Centra el texto dentro del contenedor de enlaces */
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif; /* Familia de fuentes */
+        font-weight: 800;
+    }

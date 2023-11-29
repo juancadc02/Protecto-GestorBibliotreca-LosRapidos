@@ -1,32 +1,19 @@
-﻿
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-5 mx-auto">
-            <div class="form-Registro">
-                <p class="title">Nuevo Usuario</p>
+﻿    
 
-                <form class="form" action="RegistrarUsuarios" method="post">
+<div class="contenedor form-registro">
+        <p class="titulo">Nuevo Usuario</p>
+        <form class="form" id="usuarioForm">
 
-                    <input type="text" id="nombre_usuario" name="nombre_usuario" class="input" placeholder="Nombre " required>
+            <!--cambiar inputs por los que tienen el name-->
+        <input type="text" id="nombre" class="input" placeholder="Nombre" required>
+        <input type="text" id="apellidos" class="input" placeholder="Apellidos" required>
+        <input type="text" id="dni" class="input" placeholder="DNI" required>
+        <input type="text" id="tlf" class="input" placeholder="Telefono" required>
+        <input type="email" id="email" class="input" placeholder="Email" required>
+        <input type="password" id="contrasenya" class="input" placeholder="Contraseña" required oninput="revisarContraseña()">
+        <input type="password" id="confContrasenya" class="input" placeholder="Confirmar Contraseña" required oninput="revisarContraseña()">
 
-                    <input type="text" id="apellidos_usuario" name="apellidos_usuario" class="input" placeholder="Apellidos" required>
-
-
-                    <input type="text" id="dni_usuario" name="dni_usuario" class="input" placeholder="DNI" required>
-
-                    <input type="text" id="tlf_usuario" name="tlf_usuario" class="input" placeholder="Telefono" required>
-
-                    <input type="email" id="email_usuario" name="email_usuario" class="input" placeholder="Email" required>
-
-                    <input type="password" id="clave_usuario" name="clave_usuario" class="input" placeholder="Contraseña">
-
-                    <input type="password" id="confContraseña" name="confContraseña" class="input" placeholder="Confirmar Contraseña">
-
-                    <button type="submit" class="form-btn">Registrarse</button>
-                </form>
-            </div>
-
-        </div>
-
-
-    </div>
+        <button type="submit" onclick="guardarUsuario()" id="btnRegistro" class="form-btn">Registrarse</button>
+        <div class="mensajeContrasenya" id="mensajeContrasenya"></div>
+        </form>
+</div>

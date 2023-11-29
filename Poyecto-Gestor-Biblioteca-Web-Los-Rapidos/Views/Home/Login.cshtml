@@ -4,40 +4,30 @@
     var mensajeRegistroExitoso = ViewBag.MensajeRegistroExitoso as string;
 }
 
-<div id="content">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-5 mx-auto">
-                <div class="form-container">
-                    <p class="title">Bienvenido</p>
 
-                    <form class="form" method="post" action="@Url.Action("InicioDeSesion", "ControladorIniciarSesion")">
-                        <input type="email" name="email_usuario" class="input" placeholder="Email">
-                        <input type="password" name="clave_usuario" class="input" placeholder="Contraseña">
 
-                        <button type="submit" class="col-12 form-btn">Acceder</button>
-                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("Registro", "ControladorRegistro")">Registro</button>
-                        <button type="submit" class="col-12 form-btn" formaction="@Url.Action("irARecuperarContraseña", "ControladorRecuperarContraseña")">Recuperar Contraseña</button>
 
-                    </form>
-
-                    
-                </div>
-                @if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
-                {
-                    <div class="alert alert-success">
-                        @mensajeRegistroExitoso
-                    </div>
-                }
-              
-
-                @if (!string.IsNullOrEmpty(ViewBag.MensajeLoginError))
-                {
-                    <div class="alert alert-danger">
-                        @ViewBag.MensajeLoginError
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+<div class="contenedor form-login">
+    <p class="titulo">Bienvenido</p>
+    <form class="form" method="post" action="@Url.Action("InicioDeSesion", "ControladorIniciarSesion")">
+        <input type="email" class="input" placeholder="Email">
+        <input type="password" class="input" placeholder="Contraseña">
+        <button class="form-btn" formaction="@Url.Action("Login", "ControladorIniciarSesion")">Acceder</button>
+        <button class="form-btn" formaction="@Url.Action("Registro", "ControladorRegistro")">Registrarse</button>
+        <button class="form-btn negro" formaction="@Url.Action("irARecuperarContraseña", "ControladorRecuperarContraseña")">Recuperar contraseña</button>
+    </form>
 </div>
+@if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
+{
+    <div class="alert alert-success">
+        @mensajeRegistroExitoso
+    </div>
+}
+
+
+@if (!string.IsNullOrEmpty(ViewBag.MensajeLoginError))
+{
+    <div class="alert alert-danger">
+        @ViewBag.MensajeLoginError
+    </div>
+}

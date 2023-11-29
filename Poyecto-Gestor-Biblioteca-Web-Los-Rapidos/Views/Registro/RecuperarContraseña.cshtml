@@ -8,13 +8,14 @@
 
     <div class="contenedor form-olvidado">
         <p class="titulo">Olvidaste la contraseña</p>
-        <form class="form" action="recuperarContraseña" method="post">
-            <input name="email_usuario" type="email" class="input" placeholder="Email">
+        <form class="form">
+            <input type="email" class="input" placeholder="Email">
             <button class="form-btn">Recuperar contraseña</button>
             <div class="mi-recuadro">
-                <p>Te enviaremos un correo electrónico para que cambies la contraseña</p>
+                <p>Te enviaremos un correo electronico para que cambies la contraseña</p>
             </div>
         </form>
+    
         
         @if (TempData["MensajeRecuperarContraseñaError"] != null)
         {
@@ -31,3 +32,5 @@
     </div>
 </body>
 </html>
+
+

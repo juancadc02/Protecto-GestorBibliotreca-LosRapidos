@@ -1,63 +1,36 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
+/*tamaño obligatorio p =< 16px // h1 =< 24px*/
 
 body {
-  margin-bottom: 60px;
+    background-color: #f8f9fa; /* Color de fondo */
 }
 
-html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
-.form-container { /*form*/
-    width: 350px;
-    height: 450px;
+.contenedor {
     background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(40, 88, 69, 0.35) 0px 5px 15px;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 20px 30px;
+    margin: auto;
+    margin-top: 50px; /* Espacio superior */
 }
 
-.form-Registro {
+.form-login { /*form-login*/
     width: 350px;
-    height: 710px;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 20px 30px;
+    height: 420px;
 }
 
-.title { /*titulo*/
-    text-align: center;
+.form-registro {
+    width: 350px;
+    height: 660px;
+}
+
+.form-olvidado {
+    width: 350px;
+    height: 365px;
+}
+
+.titulo {
+    text-align: left;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     margin: 10px 0 30px 0;
     font-size: 28px;
@@ -80,29 +53,10 @@ body {
     box-sizing: border-box;
     padding: 12px 15px;
 }
-/*
-  .page-link {
-    text-decoration: underline;
-    margin: 0;
-    text-align: end;
-    color: #747474;
-    text-decoration-color: #747474;
-  }
-  
-  .page-link-label {
-    cursor: pointer;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-  }
-  
-  .page-link-label:hover {
-    color: #000;
-  }
-  */
-.form-btn { /*form-boton*/
+
+.form-btn {
     padding: 10px 15px;
+    width: 100%;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     border-radius: 20px;
     border: 0 !important;
@@ -110,104 +64,18 @@ body {
     background: #285845;
     color: white;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;*/
+    box-shadow: 0px 3px 8px rgba(40, 88, 69, 0.24);
 }
 
-    .form-btn:active { /*form-boton*/
+    .form-btn:active {
         box-shadow: none;
     }
 
-.sign-up-label {
-    margin: 0;
-    font-size: 10px;
-    color: #747474;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+.negro {
+    background: black;
 }
 
-.sign-up-link {
-    margin-left: 1px;
-    font-size: 11px;
-    text-decoration: underline;
-    text-decoration-color: #285845;
-    color: #285845;
-    cursor: pointer;
-    font-weight: 800;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
-.buttons-container { /*botones*/
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-top: 20px;
-    gap: 15px;
-}
-
-.apple-login-button { /*cambiar-contra-boton*/
-    border-radius: 20px;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    font-size: 11px;
-    /*gap: 5px;*/
-}
-
-.apple-login-button { /*cambiar-contra-boton*/
-    background-color: #000;
-    color: #fff;
-    border: 5px solid #000;
-}
-/*
-  .google-login-button {
-    border: 2px solid #747474;
-  }
-  
-  .apple-icon,
-      .google-icon {
-    font-size: 18px;
-    margin-bottom: 1px;
-  }
-*/
-.mi-recuadro {
-    width: 300px; /* Ancho del recuadro */
-    height: 100px; /* Altura del recuadro */
-    border: 1px solid #ff9900; /* Borde sólido de 2 píxeles, color #333 */
-    padding: 20px; /* Espaciado interno de 20 píxeles */
-    margin: 30px auto; /* Margen superior e inferior de 50 píxeles, centrado horizontalmente */
-    text-align: center; /* Alineación del texto al centro */
-    background-color: white; /* Color de fondo */
-}
-
-/* Estilos para los enlaces (si no hay enlaces quitar)*/
-a {
-    color: inherit; /* O puedes establecer un color específico, por ejemplo: color: #000; */
-    text-decoration: none;
-}
-
-    a:hover {
-        text-decoration: none; /* Quita el subrayado cuando el ratón está sobre el enlace */
-        color: inherit; /* Mantiene el color del texto del elemento padre cuando el ratón está sobre el enlace */
-    }
-
-p {
-    font-size: 16px; /* Tamaño del texto para los párrafos */
-}
-
-/* Cambiar el tamaño de los encabezados de nivel 1 */
-h1 {
-    font-size: 24px; /* Tamaño del texto para los encabezados h1 */
-}
-
-
-
-
-/*Estilos para la vista de recuperar contraseña*/
 .mi-recuadro {
     width: 300px; /* Ancho del recuadro */
     height: 75px; /* Altura del recuadro */
@@ -222,22 +90,41 @@ h1 {
     align-items: center;
     line-height: 25px; /* Ajusta esto a la altura del recuadro */
 }
-.form-olvidado {
-    width: 350px;
-    height: 365px;
+
+    .mi-recuadro p {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #192255;
+    }
+
+/* Estilos para los enlaces (si no hay enlaces quitar)*/
+a {
+    color: inherit; /* O puedes establecer un color específico, por ejemplo: color: #000; */
+    text-decoration: none;
 }
-.mi-recuadro p {
+
+    a:hover {
+        text-decoration: none; /* Quita el subrayado cuando el ratón está sobre el enlace */
+        color: inherit; /* Mantiene el color del texto del elemento padre cuando el ratón está sobre el enlace */
+    }
+
+
+
+.mensajeContrasenya {
+    text-align: center;
+    margin-top: -8px;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 14px;
     font-weight: 700;
     color: #192255;
 }
-.titulo {
-    text-align: left;
+
+#mensajeContrasenya {
+    text-align: center;
+    margin-top: -8px;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    margin: 10px 0 30px 0;
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 700; /*valor maximo 700*/
     color: #192255;
 }
-
