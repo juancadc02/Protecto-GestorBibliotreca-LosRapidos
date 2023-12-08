@@ -2,11 +2,9 @@
 
 @{
     var mensajeRegistroExitoso = ViewBag.MensajeRegistroExitoso as string;
+    var contraseñaModificada = ViewBag.contraseñaModificada as string;
+    var tokenInvalido = ViewBag.tokenNoValido as string;
 }
-
-
-
-
 <div class="contenedor form-login">
     <p class="titulo">Bienvenido</p>
     <form class="form" method="post" action="@Url.Action("InicioDeSesion", "ControladorIniciarSesion")">
@@ -14,8 +12,16 @@
         <input type="password" class="input" placeholder="Contraseña">
         <button class="form-btn" formaction="@Url.Action("Login", "ControladorIniciarSesion")">Acceder</button>
         <button class="form-btn" formaction="@Url.Action("Registro", "ControladorRegistro")">Registrarse</button>
-        <button class="form-btn negro" formaction="@Url.Action("irARecuperarContraseña", "ControladorRecuperarContraseña")">Recuperar contraseña</button>
     </form>
+    <form method="get" action="@Url.Action("IniciarRecuperacion", "ControladorRecuperarContraseña")">
+        <button class="form-btn negro">Recuperar contraseña</button>
+    </form>
+    <div class="text-success mt-5">
+        <b>@contraseñaModificada</b>
+    </div>
+    <div class="text-danger mt-5">
+        <b>@tokenInvalido</b>
+    </div>
 </div>
 @if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
 {

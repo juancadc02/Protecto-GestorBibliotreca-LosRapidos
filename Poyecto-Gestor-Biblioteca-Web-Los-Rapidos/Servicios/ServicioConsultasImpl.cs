@@ -13,7 +13,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
     /// </summary>
     public class ServicioConsultasImpl : ServicioConsultas
     {
-        private readonly servicioEncriptarContraseña servicioEncriptar = new servicioEncriptarContraseñaImpl();
+        private readonly servicioEncriptar servicioEncriptar = new servicioEncriptarImpl();
 
         /// <summary>
         /// Registra un nuevo usuario en la base de datos.
@@ -30,7 +30,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                     apellidos_usuario = nuevoUsuario.apellidos_usuario,
                     tlf_usuario = nuevoUsuario.tlf_usuario,
                     email_usuario = nuevoUsuario.email_usuario,
-                    clave_usuario = servicioEncriptar.EncriptarContraseña(nuevoUsuario.clave_usuario),
+                    clave_usuario = servicioEncriptar.Encriptar(nuevoUsuario.clave_usuario),
                     fch_alta_usuario = nuevoUsuario.fch_alta_usuario,
                 };
 

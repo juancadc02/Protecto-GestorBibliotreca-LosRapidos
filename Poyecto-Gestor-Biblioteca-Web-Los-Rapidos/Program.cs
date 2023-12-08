@@ -1,6 +1,8 @@
 using DAL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,7 @@ builder.Services.AddAuthorization(options =>
     var appDBContext = scope.ServiceProvider.GetRequiredService<GestorBibliotecaDbContext>();
     appDBContext.Database.Migrate();
 }*/
+builder.Services.AddScoped<servicioEncriptar, servicioEncriptarImpl>(); 
 
 var app = builder.Build();
 

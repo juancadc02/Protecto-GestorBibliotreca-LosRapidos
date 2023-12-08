@@ -1,0 +1,32 @@
+﻿@model Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Models.RecuperarViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Contraseña</title>
+</head>
+<body>
+    <div class="contenedor form-nuevapass">
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <p class="titulo text-center">Establecer la nueva contraseña</p>
+                <form asp-controller="ControladorRecuperarContraseña" asp-action="Recuperar" method="post">
+                @Html.HiddenFor(u => u.Token)
+
+                <label for="email">Introduce tu nueva contraseña</label>
+                @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.Password, null, new { @class = "text-danger" })
+                <br />
+                <label for="email">Vuelve a introducir tu nueva contraseña</label>
+                @Html.PasswordFor(u => u.Password2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.Password2, null, new { @class = "text-danger" })
+                <br />
+                <div class="text-right mt-1">
+                    <button type="submit" class="form-btn">Recuperar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

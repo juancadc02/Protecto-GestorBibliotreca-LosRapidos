@@ -1,0 +1,25 @@
+﻿@model Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Models.IniciarRecuperacionViewModel
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar Contraseña</title>
+</head>
+<body>
+
+    <div class="contenedor form-olvidado">
+        <p class="titulo">Olvidaste la contraseña</p>
+        <form class="form" asp-controller="ControladorRecuperarContraseña" asp-action="IniciarRecuperacion" method="post">
+            @Html.TextBoxFor(d => d.Email, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.Email, null, new { @class = "text-danger" })
+            <div class="text-right mt-1">
+                <button type="submit" class="form-btn">Recuperar</button>
+            </div>
+            <div class="mi-recuadro">
+                <p>Te enviaremos un correo electronico para que cambies la contraseña</p>
+            </div>
+        </form>
+    </div>
+</body>
+</html> 
+

@@ -26,7 +26,12 @@ body {
 
 .form-olvidado {
     width: 350px;
-    height: 365px;
+    height: 430px;
+}
+
+.form-nuevapass {
+    width: 550px;
+    height: 410px;
 }
 
 .titulo {
@@ -78,17 +83,17 @@ body {
 
 .mi-recuadro {
     width: 300px; /* Ancho del recuadro */
-    height: 75px; /* Altura del recuadro */
+    height: 70px; /* Altura del recuadro */
     border: 1px solid #ff9900; /* Borde sólido de 2 píxeles, color #333 */
-    padding: 20px; /* Espaciado interno de 20 píxeles */
+    padding: 10px; /* Espaciado interno de 20 píxeles */
     margin: 3px auto; /* Margen superior e inferior de 50 píxeles, centrado horizontalmente */
+    padding-top: 25px;
     text-align: center; /* Alineación del texto al centro */
     background-color: white; /* Color de fondo */
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 25px; /* Ajusta esto a la altura del recuadro */
 }
 
     .mi-recuadro p {

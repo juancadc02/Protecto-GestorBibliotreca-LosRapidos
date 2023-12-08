@@ -64,9 +64,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// <returns></returns>
         private bool IniciarSesion(string email_usuario, string clave_usuario)
         {
-            servicioEncriptarContraseña encriptarContraseña = new servicioEncriptarContraseñaImpl();
+            servicioEncriptar encriptarContraseña = new servicioEncriptarImpl();
             var usuario = dbContext.Usuarios
-                .FirstOrDefault(u => u.email_usuario == email_usuario && u.clave_usuario == encriptarContraseña.EncriptarContraseña(clave_usuario));
+                .FirstOrDefault(u => u.email_usuario == email_usuario && u.clave_usuario == encriptarContraseña.Encriptar(clave_usuario));
             return usuario != null;
         }
 
