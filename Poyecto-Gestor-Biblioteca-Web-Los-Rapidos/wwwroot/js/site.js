@@ -4,8 +4,8 @@
 // Write your JavaScript code.
 
 function revisarContraseña() {
-    var contraseña = document.getElementById('contrasenya').value;
-    var confContraseña = document.getElementById('confContrasenya').value;
+    var contraseña = document.getElementById('clave_usuario').value;
+    var confContraseña = document.getElementById('confirmarClave_usuario').value;
     var mensajeContraseña = document.getElementById('mensajeContrasenya');
 
     if (contraseña === confContraseña) {

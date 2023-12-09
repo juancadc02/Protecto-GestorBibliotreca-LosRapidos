@@ -8,9 +8,9 @@
 <div class="contenedor form-login">
     <p class="titulo">Bienvenido</p>
     <form class="form" method="post" action="@Url.Action("InicioDeSesion", "ControladorIniciarSesion")">
-        <input type="email" class="input" placeholder="Email">
-        <input type="password" class="input" placeholder="Contraseña">
-        <button class="form-btn" formaction="@Url.Action("Login", "ControladorIniciarSesion")">Acceder</button>
+        <input type="email" name="email_usuario" class="input" placeholder="Email">
+        <input type="password" name="clave_usuario" class="input" placeholder="Contraseña">
+        <button type="submit" class="col-12 form-btn">Acceder</button>
         <button class="form-btn" formaction="@Url.Action("Registro", "ControladorRegistro")">Registrarse</button>
     </form>
     <form method="get" action="@Url.Action("IniciarRecuperacion", "ControladorRecuperarContraseña")">

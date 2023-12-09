@@ -12,9 +12,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         private readonly GestorBibliotecaDbContext dbContext;
 
         const string urlApi = "https://localhost:7268/api/ControladorUsuarios";
-
-
-
         /// <summary>
         /// Metodo encargado de abrir la vista del login.
         /// </summary>

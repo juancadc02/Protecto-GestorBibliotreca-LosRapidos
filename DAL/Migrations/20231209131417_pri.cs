@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class _1 : Migration
+    public partial class pri : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +24,7 @@ namespace DAL.Migrations
                     tlf_usuario = table.Column<string>(type: "text", nullable: false),
                     email_usuario = table.Column<string>(type: "text", nullable: false),
                     clave_usuario = table.Column<string>(type: "text", nullable: false),
+                    token_recuperacion = table.Column<string>(type: "text", nullable: true),
                     fch_alta_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -33,8 +34,8 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "nombre_usuario", "tlf_usuario" },
-                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 11, 23, 12, 43, 58, 924, DateTimeKind.Utc).AddTicks(8618), "ADMIN", "1" });
+                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
+                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 12, 9, 13, 14, 17, 208, DateTimeKind.Utc).AddTicks(3828), "ADMIN", "1", null });
         }
 
         /// <inheritdoc />

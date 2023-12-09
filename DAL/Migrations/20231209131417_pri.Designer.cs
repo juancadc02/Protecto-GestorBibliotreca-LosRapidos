@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(GestorBibliotecaDbContext))]
-    [Migration("20231123124359_1")]
-    partial class _1
+    [Migration("20231209131417_pri")]
+    partial class pri
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,9 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("token_recuperacion")
+                        .HasColumnType("text");
+
                     b.HasKey("id_usuario");
 
                     b.ToTable("Usuarios");
@@ -72,7 +75,7 @@ namespace DAL.Migrations
                             clave_usuario = "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270",
                             dni_usuario = "1",
                             email_usuario = "admin@gmail.com",
-                            fch_alta_usuario = new DateTime(2023, 11, 23, 12, 43, 58, 924, DateTimeKind.Utc).AddTicks(8618),
+                            fch_alta_usuario = new DateTime(2023, 12, 9, 13, 14, 17, 208, DateTimeKind.Utc).AddTicks(3828),
                             nombre_usuario = "ADMIN",
                             tlf_usuario = "1"
                         });

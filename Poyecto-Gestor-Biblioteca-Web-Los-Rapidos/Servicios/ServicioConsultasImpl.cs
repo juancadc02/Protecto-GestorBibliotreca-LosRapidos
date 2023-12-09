@@ -63,7 +63,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                     // Configuración del servidor SMTP (en este caso, para Gmail)
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
-                    smtp.Credentials = new NetworkCredential(gmailEnvio, "contraseña"); // Reemplaza "TuContraseña" con tu contraseña real
+                    smtp.Credentials = new NetworkCredential(gmailEnvio, ""); // Reemplaza "TuContraseña" con tu contraseña real
                     smtp.EnableSsl = true;
 
                     try

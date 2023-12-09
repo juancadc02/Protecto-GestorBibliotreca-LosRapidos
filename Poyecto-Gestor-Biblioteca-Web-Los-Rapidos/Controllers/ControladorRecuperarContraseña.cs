@@ -130,7 +130,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             if (user != null)
             {
                 // Si se encuentra dicho usuario se actualiza la contraseña y elimina el token de recuperación para que no se vuelva a usar.
-                user.clave_usuario = modelo.Password;
+                user.clave_usuario = _encriptarServicio.Encriptar( modelo.Password);
                 user.token_recuperacion = null;
                 _contexto.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _contexto.Usuarios.Update(user);
@@ -153,7 +153,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "losrapidos0.com";
+            string EmailOrigen = "";
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
             MailMessage mensajeDelCorreo = new MailMessage(EmailOrigen, emailDestino, "Recuperación de contraseña",
@@ -166,7 +166,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             oSmtpCliente.EnableSsl = true;
             oSmtpCliente.UseDefaultCredentials = false;
             oSmtpCliente.Port = 587;
-            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "quud ldzt vnpp xquv");
+            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
 
             oSmtpCliente.Send(mensajeDelCorreo);
 
