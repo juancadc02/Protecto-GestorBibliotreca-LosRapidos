@@ -16,15 +16,21 @@
             <p>Te enviaremos un correo electronico para que cambies la contraseña</p>
         </div>
     </form>
-</div>
-<div class="mt-5 w-35 mx-auto text-center">
+    <div class="mt-5 mx-auto text-center">
     @if (!string.IsNullOrEmpty(mensajeRecuperacionError))
     {
-        <div class="alert alert-danger">
-            <b>@mensajeRecuperacionError</b>
-        </div>
+        <script>
+            Swal.fire({
+                title: "Error en la recuperación",
+                html: "@Html.Raw(mensajeRecuperacionError)",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        </script>
     }
 </div>
+</div>
+
 
 
 

@@ -20,32 +20,53 @@
     </form>
     
 </div>
-<div class="mt-5 w-35 mx-auto text-center">
+<div class="mt-5 mx-auto text-center">
     @if (!string.IsNullOrEmpty(contraseñaModificada))
     {
-        <div class="alert alert-success text-center">
-            <b>@contraseñaModificada</b>
-        </div>
+        <script>
+            Swal.fire({
+                title: "Contraseña Modificada",
+                html: "@Html.Raw(contraseñaModificada)",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        </script>
     }
 
     @if (!string.IsNullOrEmpty(tokenInvalido))
     {
-        <div class="alert alert-danger text-center">
-            <b>@tokenInvalido</b>
-        </div>
+        <script>
+            Swal.fire({
+                title: "Token Inválido",
+                html: "@Html.Raw(tokenInvalido)",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        </script>
     }
 
     @if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
     {
-        <div class="alert alert-success text-center">
-            <b>@mensajeRegistroExitoso</b>
-        </div>
+        <script>
+            Swal.fire({
+                title: "Registro Exitoso",
+                html: "@Html.Raw(mensajeRegistroExitoso)",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        </script>
     }
+
     @if (!string.IsNullOrEmpty(mensajeRecuperacionOk))
     {
-        <div class="alert alert-success">
-            <b>@mensajeRecuperacionOk</b>
-        </div>
+        <script>
+            Swal.fire({
+                title: "Recuperación Exitosa",
+                html: "@Html.Raw(mensajeRecuperacionOk)",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        </script>
     }
 </div>
 

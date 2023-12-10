@@ -158,6 +158,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// </summary>
         /// <param name="emailDestino">Dirección de correo electrónico del usuario destinatario.</param>
         /// <param name="token">Token asociado a la recuperación.</param>
+        /// <param name="nombreUser">Nombre del usuario para mostrarlo en el email enviado.</param>
         private void EnviarEmail(string emailDestino, string nombreUser, string token)
         {
             string urlDominio = "https://localhost:7186";
