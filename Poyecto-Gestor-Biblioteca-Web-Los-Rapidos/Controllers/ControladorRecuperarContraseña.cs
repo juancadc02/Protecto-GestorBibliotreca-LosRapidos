@@ -56,14 +56,14 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                 // Si el el email de recuperacion no pasa la validación, vuelve a mostrar la vista con los errores.
                 return View("~/Views/Registro/IniciarRecuperacion.cshtml", modelo);
             }
-            // Genera un token único para el usuario y la recuperación.
-            string token = _encriptarServicio.Encriptar(Guid.NewGuid().ToString());
 
             // Si pasa la validación busca al usuario por su dirección de correo electrónico.
             var user = _contexto.Usuarios.Where(u => u.email_usuario == modelo.Email).FirstOrDefault();
 
-            if (user != null)
+            if (user != null) //Entra en el IF solo si el usuario existe con el email introducido.
             {
+                // Genera un token único para el usuario y la recuperación.
+                string token = _encriptarServicio.Encriptar(Guid.NewGuid().ToString());
                 // Asigna el token al usuario y actualiza la base de datos.
                 user.token_recuperacion = token;
                 _contexto.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
@@ -83,9 +83,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                 TempData["MensajeError"] = "Usuario no encontrado. La recuperación de contraseña ha fallado.";
                 return RedirectToAction("IniciarRecuperacion", "ControladorRecuperarContraseña");
             }
-
-
-
 
         }
 
@@ -139,11 +136,11 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             // Si pasa la validación busca al usuario por el token en la base de datos y por el token que llega de la URL.
             var user = _contexto.Usuarios.Where(u => u.token_recuperacion == modelo.Token).FirstOrDefault();
 
-            if (user != null)
+            if (user != null) //Entra en el IF solo si el token del usuario se corresponde con el que recibió en el email de recuperación.
             {
                 // Si se encuentra dicho usuario se actualiza la contraseña y elimina el token de recuperación para que no se vuelva a usar.
                 user.clave_usuario = _encriptarServicio.Encriptar(modelo.Password);
-                user.token_recuperacion = null;
+                user.token_recuperacion = null; //Se establece a null para que el token reclamado ya no se pueda usar nunca más
                 _contexto.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _contexto.Usuarios.Update(user);
                 _contexto.SaveChanges();
@@ -165,37 +162,31 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "@gmail.com";
+            string EmailOrigen = "";
+            //Se crea la URL de recuperación con el token que se enviará al mail del user.
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
-            string cuerpoCorreo = String.Format(@"<!DOCTYPE html>
-                                        <html lang='es'>
-                                        <body>
-                                            <div style='width:600px;padding:20px;border:1px solid #DBDBDB;border-radius:12px;font-family:Sans-serif'>
-                                                <h1 style='color:#C76F61'>Restablecer contraseña</h1>
-                                                <p style='margin-bottom:25px'>Estimado/a&nbsp;<b>{0}</b>:</p>
-                                                <p style='margin-bottom:25px'>Se solicitó un restablecimiento de contraseña para tu cuenta, haz clic en el botón que aparece a continuación para cambiar tu contraseña.</p>
-                                                <a style='padding:12px;border-radius:12px;background-color:#6181C7;color:#fff;text-decoration:none' href='{1}' target='_blank'>Cambiar contraseña</a>
-                                                <p style='margin-top:25px'>Gracias.</p>
-                                            </div>
-                                        </body>
-                                        </html>", emailDestino, urlDeRecuperacion);
+            //Hacemos que el texto del email sea un archivo html que se encuentra en la carpeta Plantilla.
+            string directorioProyecto = System.IO.Directory.GetCurrentDirectory();
+            string rutaArchivo = System.IO.Path.Combine(directorioProyecto, "Plantilla/RecuperacionContraseñaCorreo.html");
+            string htmlContent = System.IO.File.ReadAllText(rutaArchivo);
+            //Asignamos el nombre de usuario que tendrá el cuerpo del mail y el URL de recuperación con el token al HTML.
+            htmlContent = String.Format(htmlContent, emailDestino, urlDeRecuperacion);
 
-            MailMessage mensajeDelCorreo = new MailMessage(EmailOrigen, emailDestino, "Recuperación de contraseña", cuerpoCorreo);
+            MailMessage mensajeDelCorreo = new MailMessage(EmailOrigen, emailDestino, "RESTABLECER CONTRASEÑA", htmlContent);
 
             mensajeDelCorreo.IsBodyHtml = true;
 
-            SmtpClient oSmtpCliente = new SmtpClient("smtp.gmail.com");
-            oSmtpCliente.EnableSsl = true;
-            oSmtpCliente.UseDefaultCredentials = false;
-            oSmtpCliente.Port = 587;
-            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
+            SmtpClient smtpCliente = new SmtpClient("smtp.gmail.com");
+            smtpCliente.EnableSsl = true;
+            smtpCliente.UseDefaultCredentials = false;
+            smtpCliente.Port = 587;
+            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
 
-            oSmtpCliente.Send(mensajeDelCorreo);
+            smtpCliente.Send(mensajeDelCorreo);
 
-            oSmtpCliente.Dispose();
+            smtpCliente.Dispose();
         }
-
         #endregion
     }
 

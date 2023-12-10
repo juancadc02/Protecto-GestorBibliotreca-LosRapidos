@@ -40,44 +40,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
             }
         }
 
-        /// <summary>
-        /// Envía un correo electrónico desde una dirección de origen a una dirección de destino.
-        /// </summary>
-        /// <param name="emailOrigen">Dirección de correo electrónico de origen.</param>
-        /// <param name="emailDestino">Dirección de correo electrónico de destino.</param>
-        public void enviarCorreoElectronico(string gmailEnvio, string gmailRecibe, string asunto, string htmlContent)
-        {
-            //string htmlContent = System.IO.File.ReadAllText("/Pantilla/RecuperacionContraseñaCorreo.html");
-            using (var mail = new MailMessage())
-            {
-                mail.From = new MailAddress(gmailEnvio);
-                mail.To.Add(new MailAddress(gmailRecibe));
-                mail.Subject = asunto;
 
-                // Cuerpo del correo en formato HTML
-                mail.Body = htmlContent;
-                mail.IsBodyHtml = true;
-
-                using (var smtp = new SmtpClient())
-                {
-                    // Configuración del servidor SMTP (en este caso, para Gmail)
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.Credentials = new NetworkCredential(gmailEnvio, ""); // Reemplaza "TuContraseña" con tu contraseña real
-                    smtp.EnableSsl = true;
-
-                    try
-                    {
-                        smtp.Send(mail);
-                        Console.WriteLine("Correo enviado");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Se ha producido un error: " + ex.Message);
-                    }
-                }
-            }
-        }
     }
 
 }
