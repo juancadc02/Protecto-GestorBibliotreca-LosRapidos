@@ -29,11 +29,19 @@
         @mensajeRegistroExitoso
     </div>
 }
-
-
 @if (!string.IsNullOrEmpty(ViewBag.MensajeLoginError))
 {
     <div class="alert alert-danger">
         @ViewBag.MensajeLoginError
     </div>
 }
+
+@if (!string.IsNullOrEmpty(TempData["MensajeError"] as string))
+{
+    <div class="alert alert-danger">
+        <b>@TempData["MensajeError"]</b>
+    </div>
+}
+
+
+

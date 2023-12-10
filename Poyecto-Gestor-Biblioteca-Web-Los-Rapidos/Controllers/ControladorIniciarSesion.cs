@@ -18,14 +18,10 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// <returns></returns>
         public IActionResult Login()
         {
-
             ViewBag.MensajeRegistroExitoso = TempData["MensajeRegistroExitoso"] as string;
-
             // Lógica de la acción (si es necesario)
             return View("~/Views/Home/Login.cshtml");// Devuelve la vista asociada
         }
-
-
         /// <summary>
         /// Metodo encargado de hacer el inicio de sesion con el email y contraseña recogidos del formulario
         /// </summary>
@@ -65,13 +61,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             var usuario = dbContext.Usuarios
                 .FirstOrDefault(u => u.email_usuario == email_usuario && u.clave_usuario == encriptarContraseña.Encriptar(clave_usuario));
             return usuario != null;
-        }
-
-
-
-        public IActionResult AccessDenied()
-        {
-            return View();
         }
 
         public IActionResult Logout()

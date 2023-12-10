@@ -28,6 +28,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// <returns>Vista de la página principal.</returns>
         public IActionResult Index()
         {
+
             return View();
         }
 

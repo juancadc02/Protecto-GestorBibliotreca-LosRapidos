@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Models;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
+using System.Net;
 using System.Net.Mail;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
@@ -50,7 +51,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         [HttpPost]
         public IActionResult IniciarRecuperacion(IniciarRecuperacionViewModel modelo)
         {
-
             if (!ModelState.IsValid)
             {
                 // Si el el email de recuperacion no pasa la validación, vuelve a mostrar la vista con los errores.
@@ -72,9 +72,23 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 
                 // Envia un correo electrónico con el enlace de recuperación.
                 EnviarEmail(user.email_usuario, token);
-            }
+                //Mostramos mensaje de que el correo ha sido enviado
+                TempData["MensajeRegistroExitoso"] = "Correo recuperacion de contraseña enviado correctamente.";
+                //Redirigimos al login
+                return RedirectToAction("Login", "ControladorIniciarSesion");
 
-            return View("~/Views/Registro/IniciarRecuperacion.cshtml");
+            }
+            else
+            {
+                TempData["MensajeError"] = "Usuario no encontrado. La recuperación de contraseña ha fallado.";
+                return RedirectToAction("Login", "ControladorIniciarSesion");
+
+
+            }
+           
+
+
+
         }
 
         /// <summary>
@@ -153,12 +167,23 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "";
+            string EmailOrigen = "juanccaaa15@gmail.com";
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
-            MailMessage mensajeDelCorreo = new MailMessage(EmailOrigen, emailDestino, "Recuperación de contraseña",
-                "<p>Email de restablecimiento de su contraseña</p><br>" +
-                "<a href='" + urlDeRecuperacion + "'>Click para recuperar</a>");
+            string cuerpoCorreo = String.Format(@"<!DOCTYPE html>
+                                        <html lang='es'>
+                                        <body>
+                                            <div style='width:600px;padding:20px;border:1px solid #DBDBDB;border-radius:12px;font-family:Sans-serif'>
+                                                <h1 style='color:#C76F61'>Restablecer contraseña</h1>
+                                                <p style='margin-bottom:25px'>Estimado/a&nbsp;<b>{0}</b>:</p>
+                                                <p style='margin-bottom:25px'>Se solicitó un restablecimiento de contraseña para tu cuenta, haz clic en el botón que aparece a continuación para cambiar tu contraseña.</p>
+                                                <a style='padding:12px;border-radius:12px;background-color:#6181C7;color:#fff;text-decoration:none' href='{1}' target='_blank'>Cambiar contraseña</a>
+                                                <p style='margin-top:25px'>Gracias.</p>
+                                            </div>
+                                        </body>
+                                        </html>", emailDestino, urlDeRecuperacion);
+
+            MailMessage mensajeDelCorreo = new MailMessage(EmailOrigen, emailDestino, "Recuperación de contraseña", cuerpoCorreo);
 
             mensajeDelCorreo.IsBodyHtml = true;
 
@@ -166,12 +191,13 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             oSmtpCliente.EnableSsl = true;
             oSmtpCliente.UseDefaultCredentials = false;
             oSmtpCliente.Port = 587;
-            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
+            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "qrco kyud ibvr szeg");
 
             oSmtpCliente.Send(mensajeDelCorreo);
 
             oSmtpCliente.Dispose();
         }
+
         #endregion
     }
 

@@ -19,7 +19,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             // Lógica de la acción (si es necesario)
             return View("~/Views/Registro/Registro.cshtml");
         }
-
         /// <summary>
         /// Metodo que inserta en base de datos un usuario con los parametro introducidos en el formulario.
         /// </summary>
