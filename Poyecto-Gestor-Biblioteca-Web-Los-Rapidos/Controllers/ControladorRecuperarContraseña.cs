@@ -54,7 +54,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             if (!ModelState.IsValid)
             {
                 // Si el el email de recuperacion no pasa la validación, vuelve a mostrar la vista con los errores.
-                return View("~/Views/Registro/IniciarRecuperacion.cshtml",modelo);
+                return View("~/Views/Registro/IniciarRecuperacion.cshtml", modelo);
             }
             // Genera un token único para el usuario y la recuperación.
             string token = _encriptarServicio.Encriptar(Guid.NewGuid().ToString());
@@ -73,7 +73,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                 // Envia un correo electrónico con el enlace de recuperación.
                 EnviarEmail(user.email_usuario, token);
                 //Mostramos mensaje de que el correo ha sido enviado
-                TempData["MensajeRegistroExitoso"] = "Correo recuperacion de contraseña enviado correctamente.";
+                TempData["MensajeExito"] = "Correo recuperacion de contraseña enviado correctamente.";
                 //Redirigimos al login
                 return RedirectToAction("Login", "ControladorIniciarSesion");
 
@@ -81,11 +81,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             else
             {
                 TempData["MensajeError"] = "Usuario no encontrado. La recuperación de contraseña ha fallado.";
-                return RedirectToAction("Login", "ControladorIniciarSesion");
-
-
+                return RedirectToAction("IniciarRecuperacion", "ControladorRecuperarContraseña");
             }
-           
+
 
 
 
@@ -144,7 +142,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             if (user != null)
             {
                 // Si se encuentra dicho usuario se actualiza la contraseña y elimina el token de recuperación para que no se vuelva a usar.
-                user.clave_usuario = _encriptarServicio.Encriptar( modelo.Password);
+                user.clave_usuario = _encriptarServicio.Encriptar(modelo.Password);
                 user.token_recuperacion = null;
                 _contexto.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _contexto.Usuarios.Update(user);
@@ -167,7 +165,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "juanccaaa15@gmail.com";
+            string EmailOrigen = "@gmail.com";
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
             string cuerpoCorreo = String.Format(@"<!DOCTYPE html>
@@ -191,7 +189,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             oSmtpCliente.EnableSsl = true;
             oSmtpCliente.UseDefaultCredentials = false;
             oSmtpCliente.Port = 587;
-            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "qrco kyud ibvr szeg");
+            oSmtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
 
             oSmtpCliente.Send(mensajeDelCorreo);
 

@@ -19,8 +19,19 @@
                 <p>Te enviaremos un correo electronico para que cambies la contraseña</p>
             </div>
         </form>
-      
     </div>
+    @if (!string.IsNullOrEmpty(TempData["MensajeExito"] as string))
+    {
+        <div class="alert alert-danger">
+            <b>@TempData["MensajeExito"]</b>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(TempData["MensajeError"] as string))
+    {
+        <div class="alert alert-danger">
+            <b>@TempData["MensajeError"]</b>
+        </div>
+    }
 </body>
 </html> 
 

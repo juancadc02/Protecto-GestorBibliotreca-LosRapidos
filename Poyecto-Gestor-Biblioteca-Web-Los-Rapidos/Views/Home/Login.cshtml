@@ -36,10 +36,10 @@
     </div>
 }
 
-@if (!string.IsNullOrEmpty(TempData["MensajeError"] as string))
+@if (!string.IsNullOrEmpty(TempData["MensajeExito"] as string))
 {
-    <div class="alert alert-danger">
-        <b>@TempData["MensajeError"]</b>
+    <div class="alert alert-success">
+        <b>@TempData["MensajeExito"]</b>
     </div>
 }
 
