@@ -162,7 +162,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "nikoalvarezzapata@gmail.com";
+            string EmailOrigen = "";
             //Se crea la URL de recuperación con el token que se enviará al mail del user.
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
@@ -181,7 +181,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             smtpCliente.EnableSsl = true;
             smtpCliente.UseDefaultCredentials = false;
             smtpCliente.Port = 587;
-            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "ahox gnpc bfta mzzg");
+            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
 
             smtpCliente.Send(mensajeDelCorreo);
 
