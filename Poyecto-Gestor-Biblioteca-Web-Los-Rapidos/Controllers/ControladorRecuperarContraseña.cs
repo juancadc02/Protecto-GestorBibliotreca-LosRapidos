@@ -71,17 +71,17 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                 _contexto.SaveChanges();
 
                 // Envia un correo electrónico con el enlace de recuperación.
-                EnviarEmail(user.email_usuario, token);
+                EnviarEmail(user.email_usuario, user.apellidos_usuario + ", " + user.nombre_usuario, token);
                 //Mostramos mensaje de que el correo ha sido enviado
                 TempData["MensajeExito"] = "Correo recuperacion de contraseña enviado correctamente.";
                 //Redirigimos al login
-                return RedirectToAction("Login", "ControladorIniciarSesion");
+                return View("~/Views/Home/Login.cshtml");
 
             }
             else
             {
-                TempData["MensajeError"] = "Usuario no encontrado. La recuperación de contraseña ha fallado.";
-                return RedirectToAction("IniciarRecuperacion", "ControladorRecuperarContraseña");
+                TempData["MensajeError"] = "La recuperación de contraseña ha fallado. Verifique la información ingresada.";
+                return View("~/Views/Registro/IniciarRecuperacion.cshtml");
             }
 
         }
@@ -158,11 +158,11 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// </summary>
         /// <param name="emailDestino">Dirección de correo electrónico del usuario destinatario.</param>
         /// <param name="token">Token asociado a la recuperación.</param>
-        private void EnviarEmail(string emailDestino, string token)
+        private void EnviarEmail(string emailDestino, string nombreUser, string token)
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "";
+            string EmailOrigen = "nikoalvarezzapata@gmail.com";
             //Se crea la URL de recuperación con el token que se enviará al mail del user.
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
@@ -171,7 +171,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             string rutaArchivo = System.IO.Path.Combine(directorioProyecto, "Plantilla/RecuperacionContraseñaCorreo.html");
             string htmlContent = System.IO.File.ReadAllText(rutaArchivo);
             //Asignamos el nombre de usuario que tendrá el cuerpo del mail y el URL de recuperación con el token al HTML.
-            htmlContent = String.Format(htmlContent, emailDestino, urlDeRecuperacion);
+            htmlContent = String.Format(htmlContent, nombreUser, urlDeRecuperacion);
 
             MailMessage mensajeDelCorreo = new MailMessage(EmailOrigen, emailDestino, "RESTABLECER CONTRASEÑA", htmlContent);
 
@@ -181,7 +181,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             smtpCliente.EnableSsl = true;
             smtpCliente.UseDefaultCredentials = false;
             smtpCliente.Port = 587;
-            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
+            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "ahox gnpc bfta mzzg");
 
             smtpCliente.Send(mensajeDelCorreo);
 

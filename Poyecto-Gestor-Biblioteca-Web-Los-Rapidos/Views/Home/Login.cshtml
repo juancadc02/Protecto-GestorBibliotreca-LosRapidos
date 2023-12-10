@@ -4,7 +4,9 @@
     var mensajeRegistroExitoso = ViewBag.MensajeRegistroExitoso as string;
     var contraseñaModificada = ViewBag.contraseñaModificada as string;
     var tokenInvalido = ViewBag.tokenNoValido as string;
+    var mensajeRecuperacionOk = TempData["MensajeExito"] as string;
 }
+
 <div class="contenedor form-login">
     <p class="titulo">Bienvenido</p>
     <form class="form" method="post" action="@Url.Action("InicioDeSesion", "ControladorIniciarSesion")">
@@ -16,32 +18,36 @@
     <form method="get" action="@Url.Action("IniciarRecuperacion", "ControladorRecuperarContraseña")">
         <button class="form-btn negro">Recuperar contraseña</button>
     </form>
-    <div class="text-success mt-5">
-        <b>@contraseñaModificada</b>
-    </div>
-    <div class="text-danger mt-5">
-        <b>@tokenInvalido</b>
-    </div>
+    
 </div>
-@if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
-{
-    <div class="alert alert-success">
-        @mensajeRegistroExitoso
-    </div>
-}
-@if (!string.IsNullOrEmpty(ViewBag.MensajeLoginError))
-{
-    <div class="alert alert-danger">
-        @ViewBag.MensajeLoginError
-    </div>
-}
+<div class="mt-5 w-35 mx-auto text-center">
+    @if (!string.IsNullOrEmpty(contraseñaModificada))
+    {
+        <div class="alert alert-success text-center">
+            <b>@contraseñaModificada</b>
+        </div>
+    }
 
-@if (!string.IsNullOrEmpty(TempData["MensajeExito"] as string))
-{
-    <div class="alert alert-success">
-        <b>@TempData["MensajeExito"]</b>
-    </div>
-}
+    @if (!string.IsNullOrEmpty(tokenInvalido))
+    {
+        <div class="alert alert-danger text-center">
+            <b>@tokenInvalido</b>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(mensajeRegistroExitoso))
+    {
+        <div class="alert alert-success text-center">
+            <b>@mensajeRegistroExitoso</b>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(mensajeRecuperacionOk))
+    {
+        <div class="alert alert-success">
+            <b>@mensajeRecuperacionOk</b>
+        </div>
+    }
+</div>
 
 
 
