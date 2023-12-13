@@ -1,0 +1,43 @@
+﻿@model DAL.Modelos.Usuarios
+
+<h2>Mostrar Usuario</h2>
+<style>
+    #preview {
+        width: 64px;
+        height: 64px;
+        margin-top: 10px;
+    }
+</style>
+<p>Detalles del usuario:</p>
+<ul>
+    <form action="/TuControlador/SubirImagen" method="post" enctype="multipart/form-data">
+        <label for="imagen">Selecciona una imagen:</label>
+        <input type="file" name="imagen" id="imagen" accept="image/*" onchange="mostrarImagen()">
+        <br>
+        <img id="preview" src="#" alt="Vista previa de la imagen" style="display: none;">
+        <br>
+        <input type="submit" value="Subir Imagen">
+    </form>
+    <li>ID: @Model.id_usuario</li>
+    <li>Nombre: @Model.nombre_usuario</li>
+    <!-- Agrega más propiedades según tu modelo -->
+</ul>
+
+
+<script>
+    function mostrarImagen() {
+        var input = document.getElementById('imagen');
+        var preview = document.getElementById('preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

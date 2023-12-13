@@ -43,7 +43,9 @@
                             <td>@usu.tlf_usuario</td>
                             <td>
                                 <button class="btn btn-outline-danger">Borrar</button>
-                                <button class="btn btn-outline-success">Editar</button>
+
+                                <a href="@Url.Action("EditarUsuario", "ControladorAdmin", new { id = usu.id_usuario })" class="btn btn-outline-success">Editar</a>
+                            
                             </td>
                         </tr>
                     }
