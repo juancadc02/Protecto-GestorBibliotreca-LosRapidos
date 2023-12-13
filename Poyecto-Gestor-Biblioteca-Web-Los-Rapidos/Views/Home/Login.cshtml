@@ -5,6 +5,8 @@
     var contraseñaModificada = ViewBag.contraseñaModificada as string;
     var tokenInvalido = ViewBag.tokenNoValido as string;
     var mensajeRecuperacionOk = TempData["MensajeExito"] as string;
+    var inicioSesionIncorrecto = ViewBag.MensajeLoginError as string;
+
 }
 
 <div class="contenedor form-login">
@@ -64,6 +66,17 @@
                 title: "Recuperación Exitosa",
                 html: "@Html.Raw(mensajeRecuperacionOk)",
                 icon: "success",
+                confirmButtonText: "OK"
+            });
+        </script>
+    }
+    @if (!string.IsNullOrEmpty(inicioSesionIncorrecto))
+    {
+        <script>
+            Swal.fire({
+                title: "Error al iniciar sesión",
+                html: "@Html.Raw(inicioSesionIncorrecto)",
+                icon: "error",
                 confirmButtonText: "OK"
             });
         </script>
