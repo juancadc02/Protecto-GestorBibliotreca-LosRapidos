@@ -1,11 +1,14 @@
-﻿using DAL.Modelos;
+﻿using DAL;
+using DAL.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 {
     public class ControladorAdmin : Controller
     {
+        private readonly GestorBibliotecaDbContext _context;
         ServicioConsultas servicio = new ServicioConsultasImpl();
         public IActionResult irAdmin()
         {
@@ -26,6 +29,25 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             ViewData["listaPrestamo"] = listaPrestamo;
             return View("~/Views/Home/listaPrestamos.cshtml");
         }
+        public IActionResult EditarUsuario(int id)
+        {
+            var usuario = _context.Usuarios.Find(id); // Ajusta según tu modelo de datos
+            return RedirectToAction("MostrarUsuario", new { id = usuario.id_usuario });
+        }
+        public IActionResult MostrarUsuario(int id)
+        {
+            var usuario = _context.Usuarios.Find(id);
 
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View("~/Views/Home/MostrarUsuario.cshtml", usuario);
+        }
+        public ControladorAdmin(GestorBibliotecaDbContext context)
+        {
+            _context = context;
+        }
     }
 }
