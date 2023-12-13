@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Lista de Prestamos";
+    // Obtén la lista de préstamos desde ViewData
+    var listaUsuario = ViewData["listaUsuario"] as List<DAL.Modelos.Usuarios>;
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="container-fluid d-flex flex-column" style="height: 100vh;">
+    <div class="row flex-grow-1">
+        <!-- Columna para la barra lateral -->
+        <div class="col-3 panelAdmin">
+            <h3 style="color:white;">Panel Admin</h3>
+            <div class="row burbuja">
+                <a asp-controller="ControladorAdmin" asp-action="irUsuario">Usuario</a>
+            </div>
+            <br />
+            <div class="row burbuja">
+                <a asp-controller="ControladorAdmin" asp-action="irPrestamo">Prestamo</a>
+            </div>
+        </div>
+
+        <!-- Columna para el contenido principal -->
+        <div class="col-9 text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">APELLIDOS</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">TELÉFONO</th>
+                        <th scope="col">ACCIÓN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usu in listaUsuario)
+                    {
+                        <tr>
+                            <td>@usu.nombre_usuario</td>
+                            <td>@usu.apellidos_usuario</td>
+                            <td>@usu.dni_usuario</td>
+                            <td>@usu.email_usuario</td>
+                            <td>@usu.tlf_usuario</td>
+                            <td>
+                                <button class="btn btn-outline-danger">Borrar</button>
+                                <button class="btn btn-outline-success">Editar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+

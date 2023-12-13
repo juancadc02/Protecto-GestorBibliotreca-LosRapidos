@@ -1,0 +1,20 @@
+﻿﻿<div class="container-fluid d-flex flex-column"  style="height: 100vh;">
+    <div class="row flex-grow-1">
+        <!-- Columna para la barra lateral -->
+        <div class="col-3 panelAdmin">
+            <h3 style="color:white;">Panel Admin</h3>
+            <div class="row burbuja">
+                <a class="nav-link" asp-controller="ControladorAdmin" asp-action="irUsuario">Usuario</a>
+            </div>
+            <br />
+            <div class="row burbuja">
+                <a class="nav-link" asp-controller="ControladorAdmin" asp-action="irPrestamo">Prestamo</a>
+            </div>        
+        </div>
+
+        <!-- Columna para el contenido principal -->
+        <div class="col-9">
+            <!-- Agrega tu contenido principal aquí -->
+        </div>
+    </div>
+</div>

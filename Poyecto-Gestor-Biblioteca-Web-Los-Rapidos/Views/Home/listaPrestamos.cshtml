@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Lista de Prestamos";
+    var listaPrestamo = ViewData["listaPrestamo"] as List<DAL.Modelos.Prestamo>;
+
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="container-fluid d-flex flex-column" style="height: 100vh;">
+    <div class="row flex-grow-1">
+        <!-- Columna para la barra lateral -->
+        <div class="col-3 panelAdmin">
+            <h3 style="color:white;">Panel Admin</h3>
+            <i class="bi bi-gear"></i>
+            <div class="row burbuja">
+                <a class="nav-link" asp-controller="ControladorAdmin" asp-action="irUsuario">Usuario</a>
+            </div>
+            <br />
+            <div class="row burbuja">
+                <a class="nav-link" asp-controller="ControladorAdmin" asp-action="irPrestamo">Prestamo</a>
+            </div>
+        </div>
+
+        <!-- Columna para el contenido principal -->
+        <div class="col-9 text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">LIBRO</th>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">FECHA INICIO</th>
+                        <th scope="col">FECHA FIN</th>
+                        <th scope="col">FECHA ENTREGA</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col">ACCIÓN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prestamo in listaPrestamo)
+                    {
+                        <tr>
+                            <td>@prestamo.id_libro</td>
+                            <td>@prestamo.usuario</td>
+                            <td>@prestamo.fch_inicio_prestamo</td>
+                            <td>@prestamo.fch_fin_prestamo</td>
+                            <td>@prestamo.fch_entrega_prestamo</td>
+                            <td>@prestamo.estado</td>
+
+                            <td>
+                                <button class="btn btn-outline-danger">Borrar</button>
+                                <button class="btn btn-outline-success">Editar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

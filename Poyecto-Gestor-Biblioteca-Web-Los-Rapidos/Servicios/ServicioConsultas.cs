@@ -13,5 +13,13 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
         /// <param name="nuevoUsuario"> Objeto usuario que se va registrar en la bbdd</param>
         public void registrarUsuario(Usuarios nuevoUsuario);
 
+        /// <summary>
+        /// Interfaz de metodo encargado de devolver un listado de los usuarios.
+        /// </summary>
+        /// <returns></returns>
+        public List<Usuarios> listartUsuarios();
+        public List<Prestamo> listarPrestamo();
+
+
     }
 }

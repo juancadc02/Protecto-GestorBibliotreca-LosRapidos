@@ -1,4 +1,4 @@
-/*tamaño obligatorio p =< 16px // h1 =< 24px*/
+ï»¿/*tamaï¿½o obligatorio p =< 16px // h1 =< 24px*/
 
 body {
     background-color: #f8f9fa; /* Color de fondo */
@@ -14,6 +14,21 @@ body {
     margin-top: 50px; /* Espacio superior */
 }
 
+.panelAdmin {
+    background-color: #192255;
+    border-radius: 10px;
+    padding: 20px 30px;
+}
+
+.burbuja {
+    background-color: #fff;
+    color: #285845;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
 .form-login { /*form-login*/
     width: 350px;
     height: 420px;
@@ -26,12 +41,7 @@ body {
 
 .form-olvidado {
     width: 350px;
-    height: 430px;
-}
-
-.form-nuevapass {
-    width: 550px;
-    height: 410px;
+    height: 365px;
 }
 
 .titulo {
@@ -83,17 +93,17 @@ body {
 
 .mi-recuadro {
     width: 300px; /* Ancho del recuadro */
-    height: 70px; /* Altura del recuadro */
-    border: 1px solid #ff9900; /* Borde sólido de 2 píxeles, color #333 */
-    padding: 10px; /* Espaciado interno de 20 píxeles */
-    margin: 3px auto; /* Margen superior e inferior de 50 píxeles, centrado horizontalmente */
-    padding-top: 25px;
-    text-align: center; /* Alineación del texto al centro */
+    height: 75px; /* Altura del recuadro */
+    border: 1px solid #ff9900; /* Borde sï¿½lido de 2 pï¿½xeles, color #333 */
+    padding: 20px; /* Espaciado interno de 20 pï¿½xeles */
+    margin: 3px auto; /* Margen superior e inferior de 50 pï¿½xeles, centrado horizontalmente */
+    text-align: center; /* Alineaciï¿½n del texto al centro */
     background-color: white; /* Color de fondo */
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    line-height: 25px; /* Ajusta esto a la altura del recuadro */
 }
 
     .mi-recuadro p {
@@ -105,13 +115,13 @@ body {
 
 /* Estilos para los enlaces (si no hay enlaces quitar)*/
 a {
-    color: inherit; /* O puedes establecer un color específico, por ejemplo: color: #000; */
+    color: inherit; /* O puedes establecer un color especï¿½fico, por ejemplo: color: #000; */
     text-decoration: none;
 }
 
     a:hover {
-        text-decoration: none; /* Quita el subrayado cuando el ratón está sobre el enlace */
-        color: inherit; /* Mantiene el color del texto del elemento padre cuando el ratón está sobre el enlace */
+        text-decoration: none; /* Quita el subrayado cuando el ratï¿½n estï¿½ sobre el enlace */
+        color: inherit; /* Mantiene el color del texto del elemento padre cuando el ratï¿½n estï¿½ sobre el enlace */
     }
 
 
