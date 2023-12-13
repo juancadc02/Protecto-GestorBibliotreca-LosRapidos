@@ -154,10 +154,6 @@ namespace DAL.Migrations
                     b.Property<int>("id_genero")
                         .HasColumnType("integer");
 
-                    b.Property<byte[]>("imagen_libro")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
                     b.Property<string>("isbn_libro")
                         .IsRequired()
                         .HasColumnType("text");
@@ -239,6 +235,9 @@ namespace DAL.Migrations
                     b.Property<DateTime>("fch_alta_usuario")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime?>("fecha_vencimiento_token")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("nombre_usuario")
                         .IsRequired()
                         .HasColumnType("text");
@@ -262,7 +261,7 @@ namespace DAL.Migrations
                             clave_usuario = "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270",
                             dni_usuario = "1",
                             email_usuario = "admin@gmail.com",
-                            fch_alta_usuario = new DateTime(2023, 12, 13, 10, 38, 45, 315, DateTimeKind.Utc).AddTicks(9982),
+                            fch_alta_usuario = new DateTime(2023, 12, 13, 12, 4, 59, 122, DateTimeKind.Utc).AddTicks(3725),
                             nombre_usuario = "ADMIN",
                             tlf_usuario = "1"
                         });

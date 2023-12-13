@@ -93,6 +93,7 @@ namespace DAL.Migrations
                     email_usuario = table.Column<string>(type: "text", nullable: false),
                     clave_usuario = table.Column<string>(type: "text", nullable: false),
                     token_recuperacion = table.Column<string>(type: "text", nullable: true),
+                    fecha_vencimiento_token = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     fch_alta_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -111,8 +112,7 @@ namespace DAL.Migrations
                     edicion_libro = table.Column<string>(type: "text", nullable: false),
                     id_editorial = table.Column<int>(type: "integer", nullable: false),
                     id_genero = table.Column<int>(type: "integer", nullable: false),
-                    id_coleccion = table.Column<int>(type: "integer", nullable: false),
-                    imagen_libro = table.Column<byte[]>(type: "bytea", nullable: false)
+                    id_coleccion = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -217,8 +217,8 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
-                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 12, 13, 10, 38, 45, 315, DateTimeKind.Utc).AddTicks(9982), "ADMIN", "1", null });
+                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "fecha_vencimiento_token", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
+                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 12, 13, 12, 4, 59, 122, DateTimeKind.Utc).AddTicks(3725), null, "ADMIN", "1", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Libros_id_coleccion",

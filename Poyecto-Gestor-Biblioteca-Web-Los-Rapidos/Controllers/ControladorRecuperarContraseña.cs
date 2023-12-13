@@ -64,10 +64,14 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             {
                 // Genera un token único para el usuario y la recuperación.
                 string token = _encriptarServicio.Encriptar(Guid.NewGuid().ToString());
+
+                // Establece la fecha de vencimiento del token (por ejemplo, 24 horas a partir de ahora).
+                user.fecha_vencimiento_token = DateTime.UtcNow.AddMinutes(2);
+
+                // Asigna el token al usuario y actualiza la base de datos.
                 // Asigna el token al usuario y actualiza la base de datos.
                 user.token_recuperacion = token;
-                _contexto.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _contexto.Usuarios.Update(user);
+                _contexto.Entry(user).State = EntityState.Modified;
                 _contexto.SaveChanges();
 
                 // Envia un correo electrónico con el enlace de recuperación.
@@ -106,13 +110,14 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                 return View("~/Views/Registro/Recuperar.cshtml");
             }
 
-            // Busca al usuario por el token en la base de datos.
-            var user = _contexto.Usuarios.Where(u => u.token_recuperacion == model.Token).FirstOrDefault();
+            var user = _contexto.Usuarios
+    .Where(u => u.token_recuperacion == model.Token && u.fecha_vencimiento_token > DateTime.UtcNow)
+    .FirstOrDefault();
 
             if (user == null)
             {
-                // Si el usuario no es válido, muestra un mensaje y redirige al login.
-                ViewBag.TokenNoValido = "El token ha expirado";
+                // Si el usuario no es válido o el token ha expirado, muestra un mensaje y redirige al login.
+                ViewBag.TokenNoValido = "El token ha expirado o no es válido";
                 return View("~/Views/Home/Login.cshtml");
             }
 
@@ -163,7 +168,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             string urlDominio = "https://localhost:7186";
 
-            string EmailOrigen = "";
+            string EmailOrigen = "juanccaaa15@gmail.com";
             //Se crea la URL de recuperación con el token que se enviará al mail del user.
             string urlDeRecuperacion = String.Format("{0}/ControladorRecuperarContraseña/Recuperar/?token={1}", urlDominio, token);
 
@@ -182,7 +187,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             smtpCliente.EnableSsl = true;
             smtpCliente.UseDefaultCredentials = false;
             smtpCliente.Port = 587;
-            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "");
+            smtpCliente.Credentials = new System.Net.NetworkCredential(EmailOrigen, "qfrv qycn hntn uyyb");
 
             smtpCliente.Send(mensajeDelCorreo);
 

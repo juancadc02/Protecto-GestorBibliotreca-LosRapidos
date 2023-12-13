@@ -24,6 +24,8 @@ namespace DAL.Modelos
         public string email_usuario { get; set; }
         public string clave_usuario { set; get; }
         public string? token_recuperacion { get; set; }
+        public DateTime? fecha_vencimiento_token { get; set; }
+
         //public bool estaBloqueado_usuario { get; set; }
         //public DateTime fch_fin_bloqueo_usuario { get; set; }
         public DateTime fch_alta_usuario { get; set; }
@@ -47,7 +49,7 @@ namespace DAL.Modelos
             this.fch_alta_usuario = fch_alta_usuario;
         }
 
-        public Usuarios(string dni_usuario, string nombre_usuario, string apellidos_usuario, string tlf_usuario, string email_usuario, string clave_usuario, DateTime fch_alta_usuario, string token)
+        public Usuarios(string dni_usuario, string nombre_usuario, string apellidos_usuario, string tlf_usuario, string email_usuario, string clave_usuario, DateTime fch_alta_usuario, string token, DateTime? fecha_vencimiento_token)
         {
             this.dni_usuario = dni_usuario;
             this.nombre_usuario = nombre_usuario;
@@ -57,6 +59,7 @@ namespace DAL.Modelos
             this.clave_usuario = clave_usuario;
             this.fch_alta_usuario = fch_alta_usuario;
             this.token_recuperacion = token;
+            this.fecha_vencimiento_token = fecha_vencimiento_token;
         }
 
 

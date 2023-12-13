@@ -26,9 +26,6 @@ namespace DAL.Modelos
         public int id_genero { get; set; }
         [ForeignKey("Colecciones")]
         public int id_coleccion { get; set; }
-
-        public byte[] imagen_libro { get; set; }
-
         public ICollection<Autores> Autores { get; set; }
 
 
@@ -60,7 +57,6 @@ namespace DAL.Modelos
             this.id_editorial = id_editorial;
             this.id_genero = id_genero;
             this.id_coleccion = id_coleccion;
-            this.imagen_libro = imagen_libro;
         }
 
     }
