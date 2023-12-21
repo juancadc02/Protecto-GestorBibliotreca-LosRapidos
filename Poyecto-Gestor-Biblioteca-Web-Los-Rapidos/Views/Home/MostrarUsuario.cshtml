@@ -3,26 +3,30 @@
 <h2>Mostrar Usuario</h2>
 <style>
     #preview {
-        width: 64px;
-        height: 64px;
-        margin-top: 10px;
+        width: 100px;
+        height: 100px;
+        margin: 12px auto;
+        display: block;
+        border: 2px solid black;
+        border-radius: 50%;
+        object-fit: cover;
     }
 </style>
-<p>Detalles del usuario:</p>
-<ul>
-    <form action="/TuControlador/SubirImagen" method="post" enctype="multipart/form-data">
-        <label for="imagen">Selecciona una imagen:</label>
-        <input type="file" name="imagen" id="imagen" accept="image/*" onchange="mostrarImagen()">
-        <br>
-        <img id="preview" src="#" alt="Vista previa de la imagen" style="display: none;">
-        <br>
-        <input type="submit" value="Subir Imagen">
-    </form>
-    <li>ID: @Model.id_usuario</li>
-    <li>Nombre: @Model.nombre_usuario</li>
-    <!-- Agrega más propiedades según tu modelo -->
-</ul>
 
+<div class="contenedor form-registro">
+    <p class="titulo">Modificar Usuario</p>
+    <img id="preview" style="display:none">
+    <form class="form" action="/ControladorAdmin/ModificarUsuario" method="post">
+        <input type="text" id="nombre_usuario" name="nombre_usuario" class="input" required value="@Model.nombre_usuario" />
+        <input type="text" id="apellidos_usuario" name="apellidos_usuario" class="input" required value="@Model.apellidos_usuario" />
+        <input type="text" id="dni_usuario" name="dni_usuario" class="input" required value="@Model.dni_usuario" />
+        <input type="text" id="tlf_usuario" name="tlf_usuario" class="input" required value="@Model.tlf_usuario" />
+        <input type="text" id="email_usuario" name="email_usuario" class="input" required value="@Model.email_usuario" />
+        <input type="file" id="imagen" name="imagen" accept="image/*" onchange="mostrarImagen()" />
+        <button type="submit" id="btnRegistro" class="form-btn">Guardar Cambios</button>
+    </form>
+
+</div>
 
 <script>
     function mostrarImagen() {

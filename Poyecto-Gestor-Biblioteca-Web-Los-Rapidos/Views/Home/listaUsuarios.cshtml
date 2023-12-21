@@ -42,8 +42,7 @@
                             <td>@usu.email_usuario</td>
                             <td>@usu.tlf_usuario</td>
                             <td>
-                                <button class="btn btn-outline-danger">Borrar</button>
-
+                                <a href="@Url.Action("EliminarUsuario", "ControladorAdmin", new { id = usu.id_usuario })" class="btn btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Borrar</a>
                                 <a href="@Url.Action("EditarUsuario", "ControladorAdmin", new { id = usu.id_usuario })" class="btn btn-outline-success">Editar</a>
                             
                             </td>

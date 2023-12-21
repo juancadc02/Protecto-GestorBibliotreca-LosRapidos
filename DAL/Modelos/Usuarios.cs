@@ -25,11 +25,9 @@ namespace DAL.Modelos
         public string clave_usuario { set; get; }
         public string? token_recuperacion { get; set; }
         public DateTime? fecha_vencimiento_token { get; set; }
-
-        //public bool estaBloqueado_usuario { get; set; }
-        //public DateTime fch_fin_bloqueo_usuario { get; set; }
         public DateTime fch_alta_usuario { get; set; }
-        //public DateTime fch_baja_usuario { get; set; }
+        public byte[]? imagen { get; set; }
+
 
 
 
@@ -49,7 +47,7 @@ namespace DAL.Modelos
             this.fch_alta_usuario = fch_alta_usuario;
         }
 
-        public Usuarios(string dni_usuario, string nombre_usuario, string apellidos_usuario, string tlf_usuario, string email_usuario, string clave_usuario, DateTime fch_alta_usuario, string token, DateTime? fecha_vencimiento_token)
+        public Usuarios(string dni_usuario, string nombre_usuario, string apellidos_usuario, string tlf_usuario, string email_usuario, string clave_usuario, DateTime fch_alta_usuario, string token, DateTime? fecha_vencimiento_token, byte[] imagen)
         {
             this.dni_usuario = dni_usuario;
             this.nombre_usuario = nombre_usuario;
@@ -60,6 +58,17 @@ namespace DAL.Modelos
             this.fch_alta_usuario = fch_alta_usuario;
             this.token_recuperacion = token;
             this.fecha_vencimiento_token = fecha_vencimiento_token;
+            this.imagen = imagen;
+        }
+
+        public Usuarios(string dni_usuario, string nombre_usuario, string apellidos_usuario, string tlf_usuario, string email_usuario ,byte[] imagen)
+        {
+            this.dni_usuario = dni_usuario;
+            this.nombre_usuario = nombre_usuario;
+            this.apellidos_usuario = apellidos_usuario;
+            this.tlf_usuario = tlf_usuario;
+            this.email_usuario = email_usuario;
+            this.imagen = imagen;
         }
 
 

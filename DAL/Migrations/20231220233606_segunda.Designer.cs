@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(GestorBibliotecaDbContext))]
-    [Migration("20231213120459_p")]
-    partial class p
+    [Migration("20231220233606_segunda")]
+    partial class segunda
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,6 +241,9 @@ namespace DAL.Migrations
                     b.Property<DateTime?>("fecha_vencimiento_token")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<byte[]>("imagen")
+                        .HasColumnType("bytea");
+
                     b.Property<string>("nombre_usuario")
                         .IsRequired()
                         .HasColumnType("text");
@@ -264,7 +267,7 @@ namespace DAL.Migrations
                             clave_usuario = "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270",
                             dni_usuario = "1",
                             email_usuario = "admin@gmail.com",
-                            fch_alta_usuario = new DateTime(2023, 12, 13, 12, 4, 59, 122, DateTimeKind.Utc).AddTicks(3725),
+                            fch_alta_usuario = new DateTime(2023, 12, 20, 23, 36, 6, 37, DateTimeKind.Utc).AddTicks(1019),
                             nombre_usuario = "ADMIN",
                             tlf_usuario = "1"
                         });
