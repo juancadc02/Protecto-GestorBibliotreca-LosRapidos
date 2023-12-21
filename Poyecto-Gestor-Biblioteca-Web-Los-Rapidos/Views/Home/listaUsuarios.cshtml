@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Lista de Prestamos";
+    ViewData["Title"] = "Lista de Usuarios";
     // Obtén la lista de préstamos desde ViewData
     var listaUsuario = ViewData["listaUsuario"] as List<DAL.Modelos.Usuarios>;
 }
@@ -49,7 +49,15 @@
                         </tr>
                     }
                 </tbody>
+
             </table>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
         </div>
     </div>
+
 

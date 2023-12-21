@@ -143,3 +143,14 @@ a {
     font-weight: 700; /*valor maximo 700*/
     color: #192255;
 }
+
+/*Estilo para la vista mostrarUsuario*/
+#preview {
+    width: 100px;
+    height: 100px;
+    margin: 12px auto;
+    display: block;
+    border: 2px solid black;
+    border-radius: 50%;
+    object-fit: cover;
+}

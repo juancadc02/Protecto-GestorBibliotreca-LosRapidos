@@ -17,4 +17,11 @@
         <button type="submit" id="btnRegistro" class="form-btn">Registrarse</button>
         <div class="mensajeContrasenya" id="mensajeContrasenya"></div>
         </form>
+
+    @if (TempData["ErrorRegistro"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorRegistro"]
+        </div>
+    }
 </div>

@@ -33,7 +33,15 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         public ActionResult RegistrarUsuarios(string nombre_usuario, string apellidos_usuario, string dni_usuario, string tlf_usuario, string email_usuario, string clave_usuario)
         {
             ServicioConsultas servicio = new ServicioConsultasImpl();
-            //Fecha actual
+
+            // Verifica si el correo electrónico o el DNI ya existen en la base de datos
+            if (servicio.existeCorreoElectronico(email_usuario) || servicio.existeDNI(dni_usuario))
+            {
+                TempData["ErrorRegistro"] = "El correo electrónico o el DNI ya están registrados.";
+                return RedirectToAction("Registro", "ControladorRegistro"); // Puedes redirigir a una vista de error o a la misma página de registro
+            }
+
+            // Si el correo electrónico y el DNI no existen, procede con el registro
             DateTime fechaActual = DateTime.Now.ToUniversalTime();
             Usuarios usuariosNuevo = new Usuarios(dni_usuario, nombre_usuario, apellidos_usuario, tlf_usuario, email_usuario, clave_usuario, fechaActual);
             servicio.registrarUsuario(usuariosNuevo);

@@ -14,11 +14,8 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
     public class ServicioConsultasImpl : ServicioConsultas
     {
         private readonly servicioEncriptar servicioEncriptar = new servicioEncriptarImpl();
+        private readonly GestorBibliotecaDbContext _context;
 
-        /// <summary>
-        /// Registra un nuevo usuario en la base de datos.
-        /// </summary>
-        /// <param name="nuevoUsuario">Objeto Usuarios que representa al nuevo usuario a registrar.</param>
         public void registrarUsuario(Usuarios nuevoUsuario)
         {
             using (var contexto = new GestorBibliotecaDbContext())
@@ -79,8 +76,18 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                 return listaPrestamo;
             }
         }
-
-
+        public bool existeCorreoElectronico(string email)
+        {
+            return _context.Usuarios.Any(u => u.email_usuario == email);
+        }
+        public bool existeDNI(string dni)
+        {
+            return _context.Usuarios.Any(u => u.dni_usuario == dni);
+        }
+        public ServicioConsultasImpl()
+        {
+            _context = new GestorBibliotecaDbContext();
+        }
     }
 
 }

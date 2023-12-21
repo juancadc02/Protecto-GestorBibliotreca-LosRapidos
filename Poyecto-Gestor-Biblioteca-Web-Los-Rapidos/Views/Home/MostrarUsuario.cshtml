@@ -1,17 +1,7 @@
 ﻿@model DAL.Modelos.Usuarios
 
 <h2>Mostrar Usuario</h2>
-<style>
-    #preview {
-        width: 100px;
-        height: 100px;
-        margin: 12px auto;
-        display: block;
-        border: 2px solid black;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-</style>
+
 
 <div class="contenedor form-registro">
     <p class="titulo">Modificar Usuario</p>
@@ -22,10 +12,9 @@
         <input type="text" id="dni_usuario" name="dni_usuario" class="input" required value="@Model.dni_usuario" />
         <input type="text" id="tlf_usuario" name="tlf_usuario" class="input" required value="@Model.tlf_usuario" />
         <input type="text" id="email_usuario" name="email_usuario" class="input" required value="@Model.email_usuario" />
-        <input type="file" id="imagen" name="imagen" accept="image/*" onchange="mostrarImagen()" />
+        <input type="file" id="imagen" name="imagen" accept="image/*" onchange="mostrarImagen()" required value="@Model.imagen" />
         <button type="submit" id="btnRegistro" class="form-btn">Guardar Cambios</button>
     </form>
-
 </div>
 
 <script>

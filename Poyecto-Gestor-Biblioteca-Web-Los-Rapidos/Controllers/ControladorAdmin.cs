@@ -52,9 +52,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         [HttpPost]
         public ActionResult ModificarUsuario(Usuarios usuario, IFormFile imagen)
         {
+            Console.WriteLine(ModelState.IsValid);
             if (ModelState.IsValid)
             {
-                // Utiliza la instancia de _context en lugar de crear una nueva
                 var usuarioExistente = _context.Usuarios.Find(usuario.id_usuario);
                 Console.WriteLine(usuarioExistente.id_usuario);
                 if (usuarioExistente != null)
@@ -65,7 +65,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                     usuarioExistente.dni_usuario = usuario.dni_usuario;
                     usuarioExistente.tlf_usuario = usuario.tlf_usuario;
                     usuarioExistente.email_usuario = usuario.email_usuario;
-
                     // Actualiza la imagen si se ha subido una nueva
                     if (imagen != null && imagen.Length > 0)
                     {
@@ -75,17 +74,14 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
                             usuarioExistente.imagen = memoryStream.ToArray();
                         }
                     }
-
                     // Guarda los cambios utilizando la misma instancia de _context
                     _context.SaveChanges();
 
                     // Redirecciona a una acción válida después de guardar
-                    return RedirectToAction("irAdmin");
+                    return RedirectToAction("irUsuario");
                 }
             }
-
-            // Si hay errores de validación o el usuario no existe, regresa al formulario
-            return View("~/Views/Home/Administracion.cshtml");
+            return RedirectToAction("irAdmin");
         }
 
         //Metodo encargado de eliminar al usuario por su id.
@@ -93,28 +89,27 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         {
             var usuarioExistente = _context.Usuarios.Find(id);
 
-            // Si el usuario no existe, regresa un error o manejo adecuado
             if (usuarioExistente == null)
             {
-                return NotFound(); // Retorna un error 404 Not Found
+                return NotFound(); 
             }
 
             try
-            {
-                // Remover el usuario del contexto
+            { 
+                //Borramos el usuario y guardamos los cambios 
                 _context.Usuarios.Remove(usuarioExistente);
-
                 _context.SaveChanges();
-
-                return RedirectToAction("irAdmin");
+                //Mostramos mensaje de exito y redirigimos al listado
+                TempData["SuccessMessage"] = "El usuario se ha eliminado correctamente.";
+                return RedirectToAction("irUsuario");
             }
             catch (Exception ex)
             {
+                //Mostramos error en la consola y redirigimos a la administracion.
                 Console.WriteLine(ex.Message);
-                return RedirectToAction("irAdmin"); // Otra vez a la vista de administración, o muestra un mensaje de error
+                return RedirectToAction("irAdmin"); 
             }
         }
-
         public ControladorAdmin(GestorBibliotecaDbContext context)
         {
             _context = context;

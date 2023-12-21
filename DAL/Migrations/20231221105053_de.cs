@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class segunda : Migration
+    public partial class de : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -219,7 +219,7 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "fecha_vencimiento_token", "imagen", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
-                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 12, 20, 23, 36, 6, 37, DateTimeKind.Utc).AddTicks(1019), null, null, "ADMIN", "1", null });
+                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 12, 21, 10, 50, 53, 653, DateTimeKind.Utc).AddTicks(33), null, null, "ADMIN", "1", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Libros_id_coleccion",
