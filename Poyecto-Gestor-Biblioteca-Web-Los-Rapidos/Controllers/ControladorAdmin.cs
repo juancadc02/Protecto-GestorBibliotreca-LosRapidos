@@ -2,16 +2,20 @@
 using DAL.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.NewFolder1;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 {
+    
     public class ControladorAdmin : Controller
     {
         private readonly GestorBibliotecaDbContext _context;
         ServicioConsultas servicio = new ServicioConsultasImpl();
+        [AutorizarSesion]
         public IActionResult irAdmin()
         {
+
             return View("~/Views/Home/Administracion.cshtml");
         }
         //metodo que muestra la lista de usuarios

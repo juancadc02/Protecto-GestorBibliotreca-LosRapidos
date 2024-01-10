@@ -66,6 +66,6 @@ namespace DAL
         public DbSet<Prestamo> Prestamos { get; set; }
         public DbSet<Estamos_Prestamo> estamos_Prestamos { get; set; }
         public DbSet<Usuarios> Usuario { get; set; }
-
+        public DbSet<Acceso> Accesos { get; set; }
     }
 }

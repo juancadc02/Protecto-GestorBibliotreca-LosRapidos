@@ -23,12 +23,15 @@ namespace DAL.Modelos
         public string tlf_usuario { set; get; }
         public string email_usuario { get; set; }
         public string clave_usuario { set; get; }
+        [ForeignKey("Accesos")]
+        public int id_accesos { get; set; }
         public string? token_recuperacion { get; set; }
         public DateTime? fecha_vencimiento_token { get; set; }
         public DateTime fch_alta_usuario { get; set; }
         public byte[]? imagen { get; set; }
 
 
+        public Accesos Accesos { get; set; }
 
 
         #region Constructores
@@ -70,6 +73,25 @@ namespace DAL.Modelos
             this.email_usuario = email_usuario;
             this.imagen = imagen;
         }
+
+        public Usuarios(int id_usuario, string dni_usuario, string nombre_usuario, string apellidos_usuario, string tlf_usuario, string email_usuario, string clave_usuario, int id_accesos, string? token_recuperacion, DateTime? fecha_vencimiento_token, DateTime fch_alta_usuario, byte[]? imagen, Acceso accesos)
+        {
+            this.dni_usuario = dni_usuario;
+            this.nombre_usuario = nombre_usuario;
+            this.apellidos_usuario = apellidos_usuario;
+            this.tlf_usuario = tlf_usuario;
+            this.email_usuario = email_usuario;
+            this.clave_usuario = clave_usuario;
+            this.id_accesos = id_accesos;
+            this.token_recuperacion = token_recuperacion;
+            this.fecha_vencimiento_token = fecha_vencimiento_token;
+            this.fch_alta_usuario = fch_alta_usuario;
+            this.imagen = imagen;
+            Accesos = accesos;
+        }
+
+
+
 
 
 

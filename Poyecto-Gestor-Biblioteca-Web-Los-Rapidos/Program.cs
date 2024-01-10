@@ -26,13 +26,20 @@ builder.Services.AddAuthorization(options =>
     // Puedes agregar políticas de autorización si es necesario
 });
 
+// Agregar sesión
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Ejemplo de tiempo de expiración
+});
+
 // Realizar migraciones
 /*using (var scope = builder.Services.CreateScope())
 {
     var appDBContext = scope.ServiceProvider.GetRequiredService<GestorBibliotecaDbContext>();
     appDBContext.Database.Migrate();
 }*/
-builder.Services.AddScoped<servicioEncriptar, servicioEncriptarImpl>(); 
+
+builder.Services.AddScoped<servicioEncriptar, servicioEncriptarImpl>();
 
 var app = builder.Build();
 
@@ -46,8 +53,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// Usar la autenticación y autorización
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Usar la sesión
+app.UseSession();
 
 // Configurar rutas de controlador
 app.MapControllerRoute(

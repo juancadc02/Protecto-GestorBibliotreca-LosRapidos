@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    // Verificar si el usuario tiene una sesión activa
+    var usuarioLogueado = Context.Session.GetString("UsuarioLogueado");
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,11 +29,18 @@
                 <div class="logo">
                     <a asp-area="" asp-controller="Home" asp-action="Index">Biblioteca</a>
                 </div>
+              
                 <ul class="nav-links">
-                    <li><a asp-controller="ControladorIniciarSesion" asp-action="Login">Iniciar Sesion</a></li>
-                    <li><a asp-controller="ControladorAdmin" asp-action="irAdmin">Admin</a></li>
-
+                    
+                       <li><a asp-controller="ControladorAdmin" asp-action="irAdmin">Admin</a></li>
                 </ul>
+                <ul class="nav-links">
+                    @if (!string.IsNullOrEmpty(usuarioLogueado))
+                    {
+                        <li><a asp-controller="ControladorIniciarSesion" asp-action="CerrarSesion">Cerrar Sesión</a></li>
+                    }
+                </ul>
+
                
 
             </div>

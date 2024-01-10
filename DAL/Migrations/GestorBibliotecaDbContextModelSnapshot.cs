@@ -37,6 +37,27 @@ namespace DAL.Migrations
                     b.ToTable("Rel_Autores_Libros", (string)null);
                 });
 
+            modelBuilder.Entity("DAL.Modelos.Acceso", b =>
+                {
+                    b.Property<int>("id_accesos")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_accesos"));
+
+                    b.Property<string>("codigo_acceso")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("descripcion_acceso")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id_accesos");
+
+                    b.ToTable("Accesos");
+                });
+
             modelBuilder.Entity("DAL.Modelos.Autores", b =>
                 {
                     b.Property<int>("id_autor")
@@ -238,6 +259,9 @@ namespace DAL.Migrations
                     b.Property<DateTime?>("fecha_vencimiento_token")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("id_accesos")
+                        .HasColumnType("integer");
+
                     b.Property<byte[]>("imagen")
                         .HasColumnType("bytea");
 
@@ -254,6 +278,8 @@ namespace DAL.Migrations
 
                     b.HasKey("id_usuario");
 
+                    b.HasIndex("id_accesos");
+
                     b.ToTable("Usuarios");
 
                     b.HasData(
@@ -264,7 +290,8 @@ namespace DAL.Migrations
                             clave_usuario = "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270",
                             dni_usuario = "1",
                             email_usuario = "admin@gmail.com",
-                            fch_alta_usuario = new DateTime(2023, 12, 21, 10, 50, 53, 653, DateTimeKind.Utc).AddTicks(33),
+                            fch_alta_usuario = new DateTime(2024, 1, 10, 13, 4, 4, 167, DateTimeKind.Utc).AddTicks(3383),
+                            id_accesos = 0,
                             nombre_usuario = "ADMIN",
                             tlf_usuario = "1"
                         });
@@ -344,6 +371,17 @@ namespace DAL.Migrations
                     b.Navigation("estado");
 
                     b.Navigation("usuario");
+                });
+
+            modelBuilder.Entity("DAL.Modelos.Usuarios", b =>
+                {
+                    b.HasOne("DAL.Modelos.Acceso", "Accesos")
+                        .WithMany()
+                        .HasForeignKey("id_accesos")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Accesos");
                 });
 
             modelBuilder.Entity("LibrosPrestamo", b =>

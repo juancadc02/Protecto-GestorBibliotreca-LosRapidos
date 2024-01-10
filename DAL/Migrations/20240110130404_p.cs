@@ -7,11 +7,25 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class de : Migration
+    public partial class p : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Accesos",
+                columns: table => new
+                {
+                    id_accesos = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    codigo_acceso = table.Column<string>(type: "text", nullable: false),
+                    descripcion_acceso = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accesos", x => x.id_accesos);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Autores",
                 columns: table => new
@@ -92,6 +106,7 @@ namespace DAL.Migrations
                     tlf_usuario = table.Column<string>(type: "text", nullable: false),
                     email_usuario = table.Column<string>(type: "text", nullable: false),
                     clave_usuario = table.Column<string>(type: "text", nullable: false),
+                    id_accesos = table.Column<int>(type: "integer", nullable: false),
                     token_recuperacion = table.Column<string>(type: "text", nullable: true),
                     fecha_vencimiento_token = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     fch_alta_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -100,6 +115,12 @@ namespace DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.id_usuario);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Accesos_id_accesos",
+                        column: x => x.id_accesos,
+                        principalTable: "Accesos",
+                        principalColumn: "id_accesos",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,8 +239,8 @@ namespace DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "fecha_vencimiento_token", "imagen", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
-                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2023, 12, 21, 10, 50, 53, 653, DateTimeKind.Utc).AddTicks(33), null, null, "ADMIN", "1", null });
+                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "fecha_vencimiento_token", "id_accesos", "imagen", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
+                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2024, 1, 10, 13, 4, 4, 167, DateTimeKind.Utc).AddTicks(3383), null, 0, null, "ADMIN", "1", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Libros_id_coleccion",
@@ -255,6 +276,11 @@ namespace DAL.Migrations
                 name: "IX_Rel_Libros_Prestamos_collectionLibroid_libro",
                 table: "Rel_Libros_Prestamos",
                 column: "collectionLibroid_libro");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_id_accesos",
+                table: "Usuarios",
+                column: "id_accesos");
         }
 
         /// <inheritdoc />
@@ -289,6 +315,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "estamos_Prestamos");
+
+            migrationBuilder.DropTable(
+                name: "Accesos");
         }
     }
 }
