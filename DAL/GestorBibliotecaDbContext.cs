@@ -20,6 +20,10 @@ namespace DAL
 
         }
         public DbSet<Usuarios> Usuarios { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -35,7 +39,9 @@ namespace DAL
                 email_usuario = "admin@gmail.com",
                 tlf_usuario = "1",
                 fch_alta_usuario = DateTime.Now.ToUniversalTime(),
+                id_acceso=2
             };
+
             // Configuración de la relación entre Autores y Libros (muchos a muchos)
             modelBuilder.Entity<Autores>()
                 .HasMany(a => a.Libros)

@@ -43,7 +43,9 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 
             // Si el correo electrónico y el DNI no existen, procede con el registro
             DateTime fechaActual = DateTime.Now.ToUniversalTime();
+          
             Usuarios usuariosNuevo = new Usuarios(dni_usuario, nombre_usuario, apellidos_usuario, tlf_usuario, email_usuario, clave_usuario, fechaActual);
+            usuariosNuevo.id_acceso = 1;
             servicio.registrarUsuario(usuariosNuevo);
             TempData["MensajeRegistroExitoso"] = "Usuario registrado con éxito.";
             return RedirectToAction("Login", "ControladorIniciarSesion");

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class p : Migration
+    public partial class e : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,14 +16,14 @@ namespace DAL.Migrations
                 name: "Accesos",
                 columns: table => new
                 {
-                    id_accesos = table.Column<int>(type: "integer", nullable: false)
+                    id_acceso = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     codigo_acceso = table.Column<string>(type: "text", nullable: false),
                     descripcion_acceso = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accesos", x => x.id_accesos);
+                    table.PrimaryKey("PK_Accesos", x => x.id_acceso);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,7 +106,7 @@ namespace DAL.Migrations
                     tlf_usuario = table.Column<string>(type: "text", nullable: false),
                     email_usuario = table.Column<string>(type: "text", nullable: false),
                     clave_usuario = table.Column<string>(type: "text", nullable: false),
-                    id_accesos = table.Column<int>(type: "integer", nullable: false),
+                    id_acceso = table.Column<int>(type: "integer", nullable: false),
                     token_recuperacion = table.Column<string>(type: "text", nullable: true),
                     fecha_vencimiento_token = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     fch_alta_usuario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -116,10 +116,10 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.id_usuario);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Accesos_id_accesos",
-                        column: x => x.id_accesos,
+                        name: "FK_Usuarios_Accesos_id_acceso",
+                        column: x => x.id_acceso,
                         principalTable: "Accesos",
-                        principalColumn: "id_accesos",
+                        principalColumn: "id_acceso",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -237,11 +237,6 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Usuarios",
-                columns: new[] { "id_usuario", "apellidos_usuario", "clave_usuario", "dni_usuario", "email_usuario", "fch_alta_usuario", "fecha_vencimiento_token", "id_accesos", "imagen", "nombre_usuario", "tlf_usuario", "token_recuperacion" },
-                values: new object[] { 1, "ADMIN", "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270", "1", "admin@gmail.com", new DateTime(2024, 1, 10, 13, 4, 4, 167, DateTimeKind.Utc).AddTicks(3383), null, 0, null, "ADMIN", "1", null });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Libros_id_coleccion",
                 table: "Libros",
@@ -278,9 +273,9 @@ namespace DAL.Migrations
                 column: "collectionLibroid_libro");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_id_accesos",
+                name: "IX_Usuarios_id_acceso",
                 table: "Usuarios",
-                column: "id_accesos");
+                column: "id_acceso");
         }
 
         /// <inheritdoc />

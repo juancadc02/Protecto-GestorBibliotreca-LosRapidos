@@ -29,6 +29,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios
                     email_usuario = nuevoUsuario.email_usuario,
                     clave_usuario = servicioEncriptar.Encriptar(nuevoUsuario.clave_usuario),
                     fch_alta_usuario = nuevoUsuario.fch_alta_usuario,
+                    id_acceso=nuevoUsuario.id_acceso
                 };
 
                 contexto.Add(nuevoUsuario);

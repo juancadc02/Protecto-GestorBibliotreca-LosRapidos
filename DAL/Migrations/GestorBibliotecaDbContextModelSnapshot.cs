@@ -39,11 +39,11 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Modelos.Acceso", b =>
                 {
-                    b.Property<int>("id_accesos")
+                    b.Property<int>("id_acceso")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_accesos"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_acceso"));
 
                     b.Property<string>("codigo_acceso")
                         .IsRequired()
@@ -53,7 +53,7 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("id_accesos");
+                    b.HasKey("id_acceso");
 
                     b.ToTable("Accesos");
                 });
@@ -259,7 +259,7 @@ namespace DAL.Migrations
                     b.Property<DateTime?>("fecha_vencimiento_token")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("id_accesos")
+                    b.Property<int>("id_acceso")
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("imagen")
@@ -278,23 +278,9 @@ namespace DAL.Migrations
 
                     b.HasKey("id_usuario");
 
-                    b.HasIndex("id_accesos");
+                    b.HasIndex("id_acceso");
 
                     b.ToTable("Usuarios");
-
-                    b.HasData(
-                        new
-                        {
-                            id_usuario = 1,
-                            apellidos_usuario = "ADMIN",
-                            clave_usuario = "ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270",
-                            dni_usuario = "1",
-                            email_usuario = "admin@gmail.com",
-                            fch_alta_usuario = new DateTime(2024, 1, 10, 13, 4, 4, 167, DateTimeKind.Utc).AddTicks(3383),
-                            id_accesos = 0,
-                            nombre_usuario = "ADMIN",
-                            tlf_usuario = "1"
-                        });
                 });
 
             modelBuilder.Entity("LibrosPrestamo", b =>
@@ -375,13 +361,13 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Modelos.Usuarios", b =>
                 {
-                    b.HasOne("DAL.Modelos.Acceso", "Accesos")
+                    b.HasOne("DAL.Modelos.Acceso", "Acceso")
                         .WithMany()
-                        .HasForeignKey("id_accesos")
+                        .HasForeignKey("id_acceso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Accesos");
+                    b.Navigation("Acceso");
                 });
 
             modelBuilder.Entity("LibrosPrestamo", b =>

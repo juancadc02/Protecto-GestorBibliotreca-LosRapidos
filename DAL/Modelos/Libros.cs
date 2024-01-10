@@ -26,9 +26,9 @@ namespace DAL.Modelos
         public int id_genero { get; set; }
         [ForeignKey("Colecciones")]
         public int id_coleccion { get; set; }
+
+
         public ICollection<Autores> Autores { get; set; }
-
-
         public ICollection<Prestamo> Prestamos { get; set; }
         public Editoriales Editoriales { get; set; }
         public Generos Generos { get; set; }

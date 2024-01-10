@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DAL.Modelos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.NewFolder1;
@@ -13,6 +14,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         private readonly GestorBibliotecaDbContext _context;
         ServicioConsultas servicio = new ServicioConsultasImpl();
         [AutorizarSesion]
+        [Authorize(Policy = "RequiereIdAcceso1")]
         public IActionResult irAdmin()
         {
 
