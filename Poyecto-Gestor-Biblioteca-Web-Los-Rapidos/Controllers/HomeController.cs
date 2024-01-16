@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Models;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 using System.Diagnostics;
@@ -8,6 +9,8 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
     /// <summary>
     /// Controlador principal que gestiona las acciones relacionadas con la página principal y otras funcionalidades del sitio web.
     /// </summary>
+    /// 
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -45,7 +45,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
             DateTime fechaActual = DateTime.Now.ToUniversalTime();
           
             Usuarios usuariosNuevo = new Usuarios(dni_usuario, nombre_usuario, apellidos_usuario, tlf_usuario, email_usuario, clave_usuario, fechaActual);
-            usuariosNuevo.id_acceso = 1;
+            usuariosNuevo.id_acceso = 2;
             servicio.registrarUsuario(usuariosNuevo);
             TempData["MensajeRegistroExitoso"] = "Usuario registrado con éxito.";
             return RedirectToAction("Login", "ControladorIniciarSesion");

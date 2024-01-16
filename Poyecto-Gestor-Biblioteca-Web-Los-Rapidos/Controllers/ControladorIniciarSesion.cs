@@ -1,8 +1,10 @@
 ﻿using DAL;
 using DAL.Modelos;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
 using System.IdentityModel.Tokens.Jwt;
@@ -33,7 +35,6 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
         /// <param name="clave_usuario"></param>
         /// <returns></returns>
         [HttpPost]
-        [HttpPost]
         public IActionResult InicioDeSesion(string email_usuario, string clave_usuario)
         {
             ServicioConsultas consultas = new ServicioConsultasImpl();
@@ -45,8 +46,25 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 
             if (IniciarSesion(email_usuario, clave_usuario))
             {
-                // Guarda el email del usuario en la sesión (u otro identificador único)
-                HttpContext.Session.SetString("UsuarioLogueado", email_usuario);
+                // Autenticar al usuario
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, email_usuario),
+                };
+
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                AuthenticationProperties authProperties = new AuthenticationProperties
+                {
+                    AllowRefresh = true
+
+                };
+
+                HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -74,7 +92,7 @@ namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 
         public IActionResult CerrarSesion()
         {
-            HttpContext.Session.Clear(); // Esto eliminará todos los datos de la sesión
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
         public ControladorIniciarSesion(GestorBibliotecaDbContext dbContext)

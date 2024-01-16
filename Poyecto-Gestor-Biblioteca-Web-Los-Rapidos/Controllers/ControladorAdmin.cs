@@ -5,21 +5,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.NewFolder1;
 using Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Servicios;
+using System.Security.Claims;
 
 namespace Poyecto_Gestor_Biblioteca_Web_Los_Rapidos.Controllers
 {
-    
+    [Authorize]
     public class ControladorAdmin : Controller
     {
         private readonly GestorBibliotecaDbContext _context;
         ServicioConsultas servicio = new ServicioConsultasImpl();
-        [AutorizarSesion]
-        [Authorize(Policy = "RequiereIdAcceso1")]
         public IActionResult irAdmin()
         {
-
-            return View("~/Views/Home/Administracion.cshtml");
+          
+            return RedirectToAction("Index", "Home");
         }
+
         //metodo que muestra la lista de usuarios
         public IActionResult irUsuario()
         {

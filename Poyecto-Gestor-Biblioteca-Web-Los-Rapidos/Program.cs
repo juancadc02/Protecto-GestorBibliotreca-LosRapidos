@@ -20,31 +20,12 @@ builder.Services.AddDbContext<GestorBibliotecaDbContext>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.LoginPath = "/ControladorIniciarSesion/Login";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
     });
-
-// Añadir la política de autorización
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("RequiereIdAcceso1", policy =>
-        policy.Requirements.Add(new RequiereIdAcceso1Requirement()));
-});
-
-// Registrar el manejador de autorización
-builder.Services.AddSingleton<IAuthorizationHandler, RequiereIdAcceso1Handler>();
-
-// Agregar sesión
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Ejemplo de tiempo de expiración
-});
-
-// ... (Resto del código)
 
 var app = builder.Build();
 
-// Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -54,12 +35,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Usar la autenticación y autorización
+app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Usar la sesión
-app.UseSession();
+
 
 // Configurar rutas de controlador
 app.MapControllerRoute(
